@@ -1,0 +1,122 @@
+<section class="container mb-5">
+  <div class="row g-4">
+    <!-- Card 1 -->
+    <div class="col-12">
+      <div class="card p-3">
+        <div class="card-header">JavaScript Execution in the Browser</div>
+        <div class="card-body">
+          <h4>JavaScript runs via the browser's JS Engine</h4>
+          <ul>
+            <li>v8 in Chrome</li>
+            <li>SpiderMonkey in Firefox</li>
+            <li>JavaScriptCore in Safari</li>
+            <li>Chakra in Edge (now v8)</li>
+          </ul>
+          <h5>Execution phases</h5>
+          <ul>
+            <li>Parsing → converts code to AST (Abstract Syntax Tree)</li>
+            <li>Compilation</li>
+            <li>Execution</li>
+          </ul>
+          <p>An AST represents the code's structure in a tree format, helping compilation and execution.</p>
+          <pre>let x = 5; → tokens: let, x, =, 5, ;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-12">
+      <div class="card p-3">
+        <div class="card-header">JavaScript Execution Process</div>
+        <div class="card-body">
+          <ol>
+            <li>Parsing: Code → AST</li>
+            <li>Compilation: AST → Bytecode → Optimized Machine Code</li>
+            <li>Execution: CPU runs machine code; GC cleans unused memory</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-12">
+      <div class="card p-3">
+        <div class="card-header">Garbage Collection in JS</div>
+        <div class="card-body">
+          <p>JS automatically frees memory of unused objects using "Mark-and-Sweep". Reference counting exists but is rarely used due to cyclic reference issues.</p>
+          <ol>
+            <li>Mark Phase: Find reachable objects from global/function scope</li>
+            <li>Sweep Phase: Remove unreachable objects</li>
+          </ol>
+          <pre>function reachable() {
+let object = { a: 1 }; // Reachable
+} // object unreachable after function ends</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col-12">
+      <div class="card p-3">
+        <div class="card-header">Stack vs Heap</div>
+        <div class="card-body">
+          <table class="table table-bordered table-sm">
+            <thead><tr><th>Feature</th><th>Stack</th><th>Heap</th></tr></thead>
+            <tbody>
+              <tr><td>Structure</td><td>LIFO</td><td>Dynamic</td></tr>
+              <tr><td>Speed</td><td>Fast</td><td>Slower</td></tr>
+              <tr><td>Lifetime</td><td>Short-lived</td><td>Long-lived</td></tr>
+              <tr><td>Memory Size</td><td>Small</td><td>Large</td></tr>
+              <tr><td>Use Case</td><td>Primitive</td><td>Objects, Arrays, Functions</td></tr>
+            </tbody>
+          </table>
+          <p>Primitives → Stack; Objects/Arrays → Heap. Stack stores references to heap objects.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="col-12">
+      <div class="card p-3">
+        <div class="card-header">JS Usage Environments</div>
+        <div class="card-body">
+          <ol>
+            <li>Web Development: Websites, SPA</li>
+            <li>Server-Side: Node.js, Express.js</li>
+            <li>Mobile: React Native, Ionic</li>
+            <li>Desktop: Electron.js</li>
+            <li>IoT: Johnny-Five.js, Raspberry Pi</li>
+            <li>Machine Learning: TensorFlow.js, Brain.js</li>
+            <li>Automation: Puppeteer, Selenium</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="col-12">
+      <div class="card p-3">
+        <div class="card-header">What is ECMAScript</div>
+        <div class="card-body">
+          <p><b>ECMAScript</b> is the official JS specification defining syntax, data types, functions, async programming, modules, and classes.</p>
+          <table class="table table-bordered table-sm">
+            <thead><tr><th>Version</th><th>Year</th><th>Key Features</th></tr></thead>
+            <tbody>
+              <tr><td>ES1</td><td>1997</td><td>First standard</td></tr>
+              <tr><td>ES5</td><td>2009</td><td>Strict mode, JSON support</td></tr>
+              <tr><td>ES6/2015</td><td>2015</td><td>let, const, arrow functions, classes, promises, modules</td></tr>
+              <tr><td>ES7/2016</td><td>2016</td><td>Array.includes(), ** operator</td></tr>
+              <tr><td>ES8/2017</td><td>2017</td><td>async/await, Object.entries()</td></tr>
+              <tr><td>ES9/2018</td><td>2018</td><td>Rest/Spread properties, Promise.finally()</td></tr>
+              <tr><td>ES10/2019</td><td>2019</td><td>Array.flat(), trimStart()/trimEnd()</td></tr>
+              <tr><td>ES11/2020</td><td>2020</td><td>Optional chaining, Nullish coalescing, Dynamic import</td></tr>
+              <tr><td>ES12/2021</td><td>2021</td><td>String.replaceAll(), Logical assignment</td></tr>
+              <tr><td>ES13/2022</td><td>2022</td><td>Top-level await, Class fields, Array.at()</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

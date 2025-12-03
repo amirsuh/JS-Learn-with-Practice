@@ -1,0 +1,204 @@
+<section class="container mb-5">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    What is Hoisting In JavaScript
+                </div>
+                <div class="card-body">
+                    <p>
+                        Hoisting is a JavaScript behavior where variable and function declarations are moved
+                        ("hoisted") to the top of their scope during compilation, before the code executes.
+                    </p>
+                    <ul>
+                        <li>Variable declared with var and Normal function supports hoisting</li>
+                        <li>let &amp; const support does't support hoisting as it does with var</li>
+                        <li>is </li>
+                    </ul>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <pre> console.log(name); // ✅ Undefined
+ var name = "John";
+ console.log(name); // John
+        </pre>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <pre>var name;  // Hoisted to the top
+console.log(name); // undefined
+name = "John";
+console.log(name); // John
+            
+        
+        </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    Temporal Dead Zone
+                </div>
+                <div class="card-body">
+                    <p>
+                        The Temporal Dead Zone is the period between the start of a function or block execution and
+                        the point where a let or const variable is initialized.
+                    </p>
+                    <pre>function prinetName() {
+   var nam1= "sss";
+onsole.log(x); // ❌ ReferenceError
+et x = 10;
+onsole.log(x); // ✅ 10
+
+
+                                              </pre>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    What is a Closure?
+                </div>
+                <div class="card-body">
+                    <p>
+                        A closure is a function that remembers the variables from its lexical scope even after the
+                        function has finished executing.
+                    </p>
+                    <p>
+                        A closure is created when an inner function accesses variables from its outer function even
+                        after the outer function has executed.
+                    </p>
+                    <pre>function outer() {
+    let count = 0;
+    function inner() {
+        count++;
+        console.log(count);
+    } 
+    return inner;
+} 
+const counter = outer();
+counter(); // Output: 1
+counter(); // Output: 2
+counter(); // Output: 3 
+        </pre>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    How Closures Work Internally
+                </div>
+                <div class="card-body">
+                    <p>When JavaScript executes a function, it creates an execution context with:</p>
+                    <ul>
+                        <li>Local Variables</li>
+                        <li>Scope Chain (Lexical Environment)</li>
+                        <li>Function Reference (if returned)</li>
+                    </ul>
+                    <p> Memory Allocation: The variable (count) is not garbage collected because the returned function
+                        still references it.</p>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+
+                        </div>
+                    </div>
+                    <pre>function createCounter() {
+    let count = 0;
+    return {
+        increment: function () {
+            count++;
+            console.log(count);
+        },
+        decrement: function () {
+            count--;
+            console.log(count);
+        }
+    };
+}
+const counter = createCounter();
+const counter2 = createCounter();
+counter.increment(); // 1
+counter.increment(); // 2
+counter.decrement(); // 1
+counter2.increment(); //1             
+                                </pre>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    In above example Problem with closure that it count variable won't be garbage collected, so how to
+                    solve this
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <p>once we do counter = null, the closure is dereferenced, and the JavaScript engine’s
+                                garbage collector can safely clean up the memory used by count</p>
+                        </div>
+                    </div>
+                    <pre>function createCounter() {
+    let count = 0;
+    return {
+        increment: function () {
+            count++;
+            console.log(count);
+        },
+        decrement: function () {
+            count--;
+            console.log(count);
+        }
+    };
+}
+const counter = createCounter(); 
+counter.increment(); // 1
+counter.increment(); // 2
+counter.decrement(); // 1   
+counter =  null;       
+                                </pre>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    lexical scop
+                </div>
+                <div class="card-body">
+                    <p>Lexical scope means that a function's scope is determined by its physical placement in the source
+                        code — not where it’s called from.</p>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <pre>function outer() {
+  let name = "Chetan";
+  function inner() {
+    console.log(name); // Accessing variable from outer scope
+  }
+  return inner;
+}
+const fn = outer();
+fn(); // Output: "Chetan"       
+                                                                        </pre>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <ul>
+                                <li>inner() is defined inside outer(), so it lexically gets access to name, even when
+                                    it's called later from outside.</li>
+                                <li>Think of lexical scope like the function carrying its own backpack — wherever it
+                                    goes, it still has access to the stuff (variables) that were available at the place
+                                    it was born.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

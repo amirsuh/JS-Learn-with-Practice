@@ -1,0 +1,245 @@
+<style>
+    h6 {
+        font-weight: 600;
+        margin-bottom: 1rem
+    }
+</style>
+<section class="container mb-5">
+    <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-12">
+            <div class="card p-3">
+                <div class="card-header">JavaScript Execution Context</div>
+                <div class="card-body">
+                    <p>
+                        The execution context in JavaScript refers to the environment in which JavaScript code is
+                        executed. It determines where variables, functions, and objects are created and from where they
+                        are accessible throughout the code. </p>
+                    <div class="row">
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-4 ">
+                            <h6>GEC (Global Execution context)</h6>
+                            <ol>
+                                <li>
+                                    created when js script starts
+                                </li>
+                                <li>
+                                    it represents the GLOBAL scope <strong>Window</strong>
+                                </li>
+                                <li>
+                                    Variables and functions declared in the Global scope.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-4 ">
+                            <h6>FEC (Function Execution context)</h6>
+                            <ol>
+                                <li>
+                                    created whenever a function is called / executed
+                                </li>
+                                <li>
+                                    Each function has its own execution context
+                                </li>
+                                <li>
+                                    contains its own variables, function-specific scope and arguments
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-4 ">
+                            Eval Execution Context
+                            <ol>
+                                <li>
+                                    created when the Eval() function used
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card p-3">
+                <div class="card-header">Phases of Execution Context</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6 ">
+                            <h6> Creation Phase (Memory Creation)</h6>
+                            <ul>
+                                <li>
+                                    Memory allocation for functions and variables.
+                                </li>
+                                <li>
+                                    Variables hoisted with 'undefined' as thier initial value.
+                                </li>
+                                <li>functions declaration were hoisted with there full defintion.</li>
+                                <li>
+                                    this is determined based on the execution context (global or function).
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6 ">
+                            <h6>Execution Phase</h6>
+                            <ul>
+                                <li>
+                                    The code is executed line by line.
+                                </li>
+                                <li>Variables are assigned values.
+                                </li>
+                                <li>Functions are executed when invoked</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card p-3">
+                <div class="card-header">Call Stack & EventLoop</div>
+                <div class="card-body">
+                    <p>
+                        JavaScript is single-threaded, meaning it can execute one task at a time. It manages code
+                        execution using the Call Stack and handles asynchronous operations with the Event Loop.</p>
+                    <div class="row">
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-4 ">
+                            <h6>Call Stack</h6>
+                            <ul>
+                                <li>When a function is invoked, JavaScript creates a Function Execution Context (FEC)
+                                    and pushes it onto the Call Stack.</li>
+                                <li>The function executes.</li>
+                                <li>Once execution is complete, the function's execution context is removed (popped)
+                                    from the stack.</li>
+                                <li>JavaScript continues executing the next function on top of the stack.</li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-4 ">
+                            <h6>Event Loop (Handling Asynchronous Code)</h6>
+                            <ul>
+                                <li>The Call Stack executes all synchronous code first.</li>
+                                <li>in case of asynchronous operation (setTimeout,setInterval,Promises,Fetch) it is sent
+                                    to Web APIs For Executions
+                                    Once completed, the callback function is moved to the Callback Queue (or Microtask
+                                    Queue in case of Promises).</li>
+
+
+                                <li>The Event Loop checks if the Call Stack is empty. If empty, the Event Loop pushes
+                                    callbacks from the queue into the stack for execution.</li>
+
+
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-4 ">
+                            Microtask Queue vs Callback Queue
+                            <ul>
+                                <li>Microtask Queue: Contains tasks from Promises</li>
+                                <li>Callback Queue (Macrotask Queue): Contains tasks from setTimeout, setInterval,
+                                    setImmediate, and event listeners.</li>
+                                <li>Microtasks are executed before Macrotasks. Means (Promises will execute before
+                                    setTimeout)</li>
+                            </ul>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                <pre>console.log("start") 
+setTimeout(()=&gt;{
+    console.log("setTimeout")
+},0)
+Promise.resolve().then(()=&gt;{
+   console.log("Promise")
+})
+console.log("end") 
+                                </pre>
+                                Output
+                                <pre>start
+end
+Promise
+setTimeout
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                <pre>console.log("start")
+setTimeout(()=&gt;{
+    console.log("setTimeout")
+    Promise.resolve().then(()=&gt;{
+        console.log("Inside Promise")
+    }) 
+},0)
+Promise.resolve().then(()=&gt;{
+    console.log("Outside Promise")
+})
+console.log("end") 
+                                </pre>
+                                output
+                                <pre>start
+end
+Outside Promise
+setTimeout
+Inside Promise
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card p-3">
+                <div class="card-header">Lexical Scope in JavaScript</div>
+                <div class="card-body">
+                    <p>Lexical Scope refers to the way
+                        JavaScript determines the scope of variables based on their position in the code at the time of
+                        writing</p>
+                    <ul>
+                        <li>Lexical Scope allows functions to access variables from their parent function.</li>
+                        <li>Helps in creating private variables (encapsulation).</li>
+                    </ul>
+                    <h6>Example</h6>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <pre>function createCounter() {
+    let count = 0; // Private variable (Lexical Scope)
+    return {
+        increment: function () {
+            count++;
+            console.log(`Count: ${count}`);
+        },
+        decrement: function () {
+            count--;
+            console.log(`Count: ${count}`);
+        },
+        getCount: function () {
+            return count;
+        }
+    };
+}
+const counter = createCounter();
+counter.increment(); // Count: 1
+counter.increment(); // Count: 2
+counter.decrement(); // Count: 1
+console.log(counter.getCount()); // 1
+console.log(counter.count); // ❌ Undefined (count is private)
+</pre>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <pre>    function setupButton() {
+        let clickCount = 0; // Private variable (Lexical Scope)
+    
+        document.getElementById("myButton").addEventListener("click", function () {
+            clickCount++;
+            console.log(`Button clicked ${clickCount} times`);
+        });
+    }
+    
+    setupButton();
+    
+</pre>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>

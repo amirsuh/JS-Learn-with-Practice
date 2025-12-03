@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 5 — Topbar with Night/Day Mode</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link rel="icon" href="favicon.ico" type="/assets/lenovo.jpg"> -->
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+
+<body class="light">
+
+  <!-- Navbar / Topbar -->
+  <nav class="navbar topbar navbar-expand-lg sticky-top shadow-sm">
+    <div class="container-fluid py-2">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <span class="animated-gradient">✨</span>
+        <div>
+          <div style="line-height:0.95"><strong>Learn JS</strong></div>
+          <small class="d-block text-muted" style="font-size:10px">Bootstrap 5 demo</small>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav me-3 align-items-lg-center">
+
+          <li class="nav-item dropdown me-2">
+            <a class="nav-link dropdown-toggle" id="featuresMenu" role="button" data-bs-toggle="dropdown">JS</a>
+            <ul class="dropdown-menu dropdown-mega" aria-labelledby="featuresMenu">
+              <li><a class="dropdown-item" href="#introToJs">Introductions of JS</a></li>
+              <li><a class="dropdown-item" href="#how-js-works">How Js Works</a></li>
+              <li><a class="dropdown-item" href="#hoisting-closure">Hoisting & Closure</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown me-2">
+            <a class="nav-link dropdown-toggle" href="#" id="resourcesMenu" role="button"
+              data-bs-toggle="dropdown">Resources</a>
+            <ul class="dropdown-menu dropdown-mega" aria-labelledby="resourcesMenu">
+              <li><a class="dropdown-item" href="#">Docs</a></li>
+              <li><a class="dropdown-item" href="#">Examples</a></li>
+              <li><a class="dropdown-item" href="#">Community</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown me-3">
+            <a class="nav-link dropdown-toggle" href="#" id="profileMenu" role="button"
+              data-bs-toggle="dropdown">Account</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileMenu">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </li>
+
+
+        </ul>
+      </div>
+      <ul>
+        <li class="nav-item d-flex align-items-center">
+          <button id="themeBtn" class="theme-toggle ms-1" onclick="updateThemeIcon()" title="Toggle day/night">
+            <!-- Sun Icon (Light theme) -->
+            <svg id="iconSun" class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 4V2M12 22v-2M4.93 4.93L3.51 3.51M20.49 20.49l-1.42-1.42M4 12H2M22 12h-2M4.93 19.07l-1.42 1.42M20.49 3.51l-1.42 1.42"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+            <!-- Moon Icon (Dark theme) -->
+            <svg id="iconMoon" class="icon-sm" viewBox="0 0 24 24" fill="none" style="display:none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+            <span class="d-none d-lg-inline" id="themeText" style="font-size:13px">Night</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="" id="content">
+
+
+  </main>
+
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Your Company Name. All rights reserved.</p>
+      <p>
+        <a href="#" class="text-white me-2">Privacy Policy</a> |
+        <a href="#" class="text-white ms-2">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap JS -->
+  <script src="assets/js/bootstrap.bundel.min.js"></script>
+
+
+</body>
+
+</html>

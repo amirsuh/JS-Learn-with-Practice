@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learn JS — Bootstrap 5 Navbar with Routing</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding-top: 70px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Learn JS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <!-- JS Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">JS</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#introToJs">Introduction to JS</a></li>
+              <li><a class="dropdown-item" href="#howJsWorks">How JS Works</a></li>
+              <li><a class="dropdown-item" href="#hoistingClosure">Hoisting & Closure</a></li>
+            </ul>
+          </li>
+
+          <!-- Resources Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Resources</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#docs">Docs</a></li>
+              <li><a class="dropdown-item" href="#examples">Examples</a></li>
+              <li><a class="dropdown-item" href="#community">Community</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="content" class="container py-4">
+    <h1>Welcome!</h1>
+    <p>This is the default content before you click any page.</p>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Your Company Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Routing Script -->
+  <script>
+    function loadPage(page) {
+      fetch(`pages/${page}.html`)
+        .then(res => {
+          if (!res.ok) throw new Error('Page not found');
+          return res.text();
+        })
+        .then(html => {
+          document.getElementById('content').innerHTML = html;
+        })
+        .catch(err => {
+          document.getElementById('content').innerHTML = `
+            <div class="alert alert-danger mt-4">
+              <h4>Error</h4>
+              <p>${err.message}</p>
+            </div>`;
+        });
+    }
+
+    function router() {
+      const hash = location.hash.replace('#', '') || '';
+      if (hash) {
+        loadPage(hash);
+      } else {
+        document.getElementById('content').innerHTML = `
+          <h1>Welcome!</h1>
+          <p>This is the default content before you click any page.</p>`;
+      }
+    }
+
+    window.addEventListener('hashchange', router);
+    window.addEventListener('load', router);
+  </script>
+</body>
+</html>
