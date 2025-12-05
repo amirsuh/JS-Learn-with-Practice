@@ -169,3 +169,78 @@ function add(a, b) {
 }
 console.log(add(2, 3)); // 5
 console.log(add(2, 3));
+
+function getSomeoftwoFunction(a,b,callback){
+    const res = a+b;
+    callback(res);
+}
+//prints(4);   // prints is not a function
+var prints = function printsum(num){
+console.log(num)
+}
+//prints(4);
+//due to print You're seeing a popup in the browser because your function name print 
+// conflicts with the built-in browser function window.print(), which opens the
+//  Print dialog popup. if we change callback function as prints- print then see a magic
+getSomeoftwoFunction(2,3,prints)
+
+
+function* checkfoeYield(start=1){
+let id = start;
+while(true){
+  yield `id+${id++}`
+}
+}
+let checkfoe =checkfoeYield(33)
+console.log(checkfoe.next().value)
+console.log(checkfoe.next().value)
+console.log(checkfoe.next().value)
+function* printNum() {
+    console.log(1)
+    yield 1;
+    console.log(2)
+    yield 2;
+    console.log(3)
+} 
+const genFun =  printNum();
+console.log(genFun.next())
+//{value: 1, done: false}
+console.log(genFun.next())
+//{value: 2, done: false}
+console.log(genFun.next())
+//{value: undefined, done: true}
+
+
+
+let flattenArr = [1,[1,2,3],2,[2,3,[3,5],5,6,[67,8]]]
+let newArr = []
+function recursive(arr){
+for(let i = 0; i<arr.length;i++){
+  debugger
+  if(typeof arr[i] == 'number'){
+     newArr.push(arr[i])
+  }
+  else{
+    recursive(arr[i])
+  }
+  
+}
+return newArr;
+}
+console.log(recursive(flattenArr))
+
+
+// let flattenArr = [1, [1,2,3], 2, [2,3,[3,5],5,6,[67,8]]];
+
+// function recursive(arr, result = []) {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (typeof arr[i] === 'number') {
+//       result.push(arr[i]);
+//     } else {
+//       recursive(arr[i], result);
+//     }
+//   }
+//   return result; // ❗ return the final flattened array
+// }
+
+// console.log(recursive(flattenArr));
