@@ -216,7 +216,7 @@ let flattenArr = [1,[1,2,3],2,[2,3,[3,5],5,6,[67,8]]]
 let newArr = []
 function recursive(arr){
 for(let i = 0; i<arr.length;i++){
-  debugger
+  // debugger
   if(typeof arr[i] == 'number'){
      newArr.push(arr[i])
   }
@@ -229,6 +229,37 @@ return newArr;
 }
 console.log(recursive(flattenArr))
 
+debugger
+
+const personi = {
+  name: "Alice",
+  sayHello: function () {
+    console.log("Hello from", this.name);
+  },
+  sayHelloArrow: () => {
+    console.log("Hello from", this.name);
+  }
+};
+personi.sayHello(); //Alice
+personi.sayHelloArrow(); //undefined
+
+var names = "Roy"
+const persona = {
+  names: "Alice",
+  sayHello: function () {
+    console.log("Hello from", this.names);
+  },
+  sayHelloArrow: () => {
+    console.log("Hello from", this.names);
+  }
+};
+persona.sayHello(); //Alice
+persona.sayHelloArrow();
+
+function test() {
+    console.log(arguments);
+  }
+test(1, 2, 3); //Works
 
 // let flattenArr = [1, [1,2,3], 2, [2,3,[3,5],5,6,[67,8]]];
 

@@ -1,0 +1,150 @@
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    /* Banner Style */
+    .banner {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-out;
+    }
+    .banner h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+    }
+    .banner h4 {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    /* Card Style */
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+    }
+    .card-body {
+      padding: 25px;
+      text-align: center;
+    }
+    .card-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #333;
+    }
+    .card-text {
+      font-size: 1rem;
+      color: #777;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .card, .banner {
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+    .card:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    .card:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+    .card:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    .card:nth-child(4) {
+      animation-delay: 0.5s;
+    }
+    .banner {
+      animation-delay: 0.1s;
+    }
+  </style>
+
+
+  <!-- Banner Section -->
+  <section class="banner">
+    <div class="container">
+      <h1>Welcome to the Learning Platform</h1>
+      <h4>Start your journey in the world of knowledge. Learn new skills and grow.</h4>
+    </div>
+  </section>
+
+  <!-- Main Content Section with Cards -->
+  <div class="container">
+    <div class="row">
+      <!-- Card 1 (Web Development) -->
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/500" class="card-img-top" alt="Web Development">
+          <div class="card-body">
+            <h5 class="card-title">Web Development</h5>
+            <p class="card-text">Master the art of building websites. From HTML to modern frameworks, start your web development journey today!</p>
+            <a href="#web-development" class="btn btn-primary">
+              <i class="bi bi-code-slash"></i> Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 (Data Science) -->
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/500" class="card-img-top" alt="Data Science">
+          <div class="card-body">
+            <h5 class="card-title">Data Science</h5>
+            <p class="card-text">Dive deep into data analysis, machine learning, and artificial intelligence. Unlock the power of data.</p>
+            <a href="#data-science" class="btn btn-success">
+              <i class="bi bi-bar-chart-line"></i> Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 (Angular) -->
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/500" class="card-img-top" alt="Angular">
+          <div class="card-body">
+            <h5 class="card-title">Angular</h5>
+            <p class="card-text">Learn the powerful framework for building modern, dynamic, and single-page web applications with Angular.</p>
+            <a href="#angular" class="btn btn-warning">
+              <i class="bi bi-box-arrow-up-right"></i> Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 (JavaScript) -->
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/500" class="card-img-top" alt="JavaScript">
+          <div class="card-body">
+            <h5 class="card-title">JavaScript</h5>
+            <p class="card-text">The language of the web. Master JavaScript to create interactive and dynamic web applications!</p>
+            <a href="#javascript" class="btn btn-info">
+              <i class="bi bi-braces"></i> Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

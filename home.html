@@ -1,153 +1,124 @@
-
-  <!-- Custom Styles -->
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-    }
-    /* Banner Style */
-    .banner {
+    .hero-section {
       background: linear-gradient(to right, #6a11cb, #2575fc);
       color: white;
-      padding: 100px 0;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
-      animation: fadeIn 1s ease-out;
-    }
-    .banner h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-    }
-    .banner h4 {
-      font-size: 1.25rem;
-      font-weight: 400;
+      padding: 50px 20px;
+      border-radius: 12px;
     }
 
-    /* Card Style */
-    .card {
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
-    }
-    .card-body {
-      padding: 25px;
+    .feature-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px 20px;
       text-align: center;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
     }
-    .card-title {
-      font-size: 1.75rem;
-      font-weight: 600;
-      color: #333;
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 6px 18px rgba(0,0,0,0.15);
     }
-    .card-text {
-      font-size: 1rem;
-      color: #777;
-    }
-    
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .card, .banner {
-      opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
-    }
-    .card:nth-child(1) {
-      animation-delay: 0.2s;
-    }
-    .card:nth-child(2) {
-      animation-delay: 0.3s;
-    }
-    .card:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-    .card:nth-child(4) {
-      animation-delay: 0.5s;
-    }
-    .banner {
-      animation-delay: 0.1s;
+
+    .feature-icon {
+      font-size: 42px;
+      margin-bottom: 15px;
     }
   </style>
 
+<!-- <body class="bg-light"> -->
 
-  <!-- Banner Section -->
-  <section class="banner">
-    <div class="container">
-      <h1>Welcome to the Learning Platform</h1>
-      <h4>Start your journey in the world of knowledge. Learn new skills and grow.</h4>
-    </div>
-  </section>
+<div class="container my-5 content-card rounded-3 p-4 shadow-sm">
 
-  <!-- Main Content Section with Cards -->
-  <div class="container">
-    <div class="row">
-      <!-- Card 1 (Web Development) -->
-      <div class="col-md-6 mb-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/500" class="card-img-top" alt="Web Development">
-          <div class="card-body">
-            <h5 class="card-title">Web Development</h5>
-            <p class="card-text">Master the art of building websites. From HTML to modern frameworks, start your web development journey today!</p>
-            <a href="#web-development" class="btn btn-primary">
-              <i class="bi bi-code-slash"></i> Learn More
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2 (Data Science) -->
-      <div class="col-md-6 mb-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/500" class="card-img-top" alt="Data Science">
-          <div class="card-body">
-            <h5 class="card-title">Data Science</h5>
-            <p class="card-text">Dive deep into data analysis, machine learning, and artificial intelligence. Unlock the power of data.</p>
-            <a href="#data-science" class="btn btn-success">
-              <i class="bi bi-bar-chart-line"></i> Learn More
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 (Angular) -->
-      <div class="col-md-6 mb-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/500" class="card-img-top" alt="Angular">
-          <div class="card-body">
-            <h5 class="card-title">Angular</h5>
-            <p class="card-text">Learn the powerful framework for building modern, dynamic, and single-page web applications with Angular.</p>
-            <a href="#angular" class="btn btn-warning">
-              <i class="bi bi-box-arrow-up-right"></i> Learn More
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4 (JavaScript) -->
-      <div class="col-md-6 mb-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/500" class="card-img-top" alt="JavaScript">
-          <div class="card-body">
-            <h5 class="card-title">JavaScript</h5>
-            <p class="card-text">The language of the web. Master JavaScript to create interactive and dynamic web applications!</p>
-            <a href="#javascript" class="btn btn-info">
-              <i class="bi bi-braces"></i> Learn More
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- MAIN TITLE WITH GRADIENT -->
+  <div class="hero-section mb-4">
+    <h1 class="fw-bold">Welcome to Interview Preparation Portal</h1>
+    <p class="lead">Your comprehensive guide to ace technical, HR, and behavioral interviews.</p>
   </div>
 
+  <!-- FEATURE CARDS -->
+  <div class="row g-4">
 
+    <div class="col-md-3">
+      <div class="feature-card">
+        <i class="bi bi-code-slash text-primary feature-icon"></i>
+        <h4>500+</h4>
+        <p class="mb-0">Coding Problems</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="feature-card">
+        <i class="bi bi-camera-video-fill text-success feature-icon"></i>
+        <h4>200+</h4>
+        <p class="mb-0">Video Tutorials</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="feature-card">
+        <i class="bi bi-journal-bookmark-fill text-info feature-icon"></i>
+        <h4>100+</h4>
+        <p class="mb-0">Study Guides</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="feature-card">
+        <i class="bi bi-people-fill text-warning feature-icon"></i>
+        <h4>50+</h4>
+        <p class="mb-0">Mock Interviews</p>
+      </div>
+    </div>
+
+    <!-- EXTRA DUMMY DATA -->
+    <div class="col-md-3">
+      <div class="feature-card">
+        <i class="bi bi-lightbulb-fill text-danger feature-icon"></i>
+        <h4>70+</h4>
+        <p class="mb-0">Interview Tips</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="feature-card">
+        <i class="bi bi-file-earmark-code-fill text-secondary feature-icon"></i>
+        <h4>120+</h4>
+        <p class="mb-0">Project Ideas</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="feature-card">
+        <i class="bi bi-diagram-3-fill text-primary feature-icon"></i>
+        <h4>40+</h4>
+        <p class="mb-0">System Design Lessons</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="feature-card">
+        <i class="bi bi-bar-chart-fill text-success feature-icon"></i>
+        <h4>90+</h4>
+        <p class="mb-0">Analytics & Case Studies</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GETTING STARTED SECTION -->
+  <div class="mt-5">
+    <h3 class="fw-bold">Getting Started</h3>
+    <p>Use the sidebar or menu to navigate through different sections. Each topic includes:</p>
+
+    <ul>
+      <li>Detailed explanations and concepts</li>
+      <li>Practice problems with solutions</li>
+      <li>Video tutorials and demonstrations</li>
+      <li>Tips from industry experts</li>
+    </ul>
+
+    <p>Click on any menu item to explore the content. Expandable sections contain related subtopics.</p>
+  </div>
+
+</div>
