@@ -1,0 +1,596 @@
+<style>
+    h6 {
+        font-weight: 600;
+        margin-bottom: 1rem
+    }
+</style>
+<section class="container mb-5">
+<div class="row">
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Phases of Execution Context
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            async/await is a feature in JavaScript used to handle asynchronous operations more efficiently. 
+                            It is built on Promises and allows writing asynchronous code in a synchronous style, improving readability and maintainability.
+                        </p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-sm-6 col-lg-6">
+                                <h5>async</h5>
+                                <ul>
+                                    <li>Declaring a function as async ensures that it always returns a promise.</li>
+                                    <li>Even if you return a simple value, JavaScript wraps it in a Promise.</li>
+                                </ul>
+                                <pre>async function getSquare(num) {
+    return num * num
+}
+
+const data =  getSquare(3);
+data.then(res=&gt;{
+    console.log(res)
+})
+                               </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-sm-6 col-lg-6">
+                                <h5>await</h5>
+                                <ul>
+                                    <li>The await keyword pauses execution of an async function until the Promise is resolved.</li>
+                                    <li>It must be used inside an async function.</li>
+                                </ul>
+                                <pre>async function getUser() {
+    let response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+    let user = await response.json();
+    console.log(user);
+}
+
+getUser();
+                                    
+                                </pre>
+                                <p>
+                                    fetch() returns a Promise =&gt; await waits for the response =&gt; response.json() returns another Promise, which is awaited. =&gt; Finally, the user data is logged. 
+                                </p>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    <script>
+                        async function getSquare(num) {
+                            return num * num
+                        }
+                        
+                        const data2 =  getSquare(3);
+                        data2.then(res=>{
+                            console.log(res)
+                        })
+                    </script>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        What is Promise
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            A Promise in JavaScript is an asynchronous operation that may resolve (success) or reject (failure) in the future. 
+                            It helps avoid callback hell and makes async code more readable.
+                        </p>
+                        <script>
+                            let newPromiseResult = new Promise((resolve,reject)=>{
+                                const isActive = false;
+                                if(isActive) {
+                                    resolve(true)
+                                } else {
+                                    reject(false)
+                                }
+                            });
+                            newPromiseResult.then((success)=>{
+                                console.log("Success",success)
+                            }).catch((error)=>{
+                                console.log("error",error)
+                            }).finally(()=>{
+                                console.log("Finally Block")
+                            })
+                        </script>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-6">
+                                <h5>Basic Promise Creation</h5>
+                                 
+                                <pre>let newPromiseResult = new Promise((resolve,reject)=&gt;{
+    const isActive = false;
+    if(isActive) {
+        resolve(true)
+    } else {
+        reject(false)
+    }
+});
+newPromiseResult.then((success)=&gt;{
+    console.log("Success",success)
+}).catch((error)=&gt;{
+    console.log("error",error)
+}).finally(()=&gt;{
+    console.log("Finally Block")
+})
+                               </pre>
+                               <p>
+                                resolve(value): Marks the promise as successful.<br> reject(error): Marks the promise as failed. 
+                                <br> .then(successCallback): Runs on resolve().<br>.catch(errorCallback): Runs on reject(). <br>
+                                .finally(finalCallback): Runs after success/failure.
+                               </p>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-6">
+                                <h5>await</h5>
+                                <ul>
+                                    <li>The await keyword pauses execution of an async function until the Promise is resolved.</li>
+                                    <li>It must be used inside an async function.</li>
+                                </ul>
+                                <pre>async function getUser() {
+    let response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+    let user = await response.json();
+    console.log(user);
+}
+
+getUser();
+                                    
+                                </pre>
+                                <p>
+                                    fetch() returns a Promise =&gt; await waits for the response =&gt; response.json() returns another Promise, which is awaited. =&gt; Finally, the user data is logged. 
+                                </p>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                     
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Chaining Promises
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>
+                                Each .then() returns a new Promise, allowing sequential execution.
+                            </li>
+                            <li>Each .then() passes its return value to the next .then().</li>
+                        </ul> 
+                        <script>
+                            new Promise ((success,error)=>{
+                                setTimeout(()=> success(5),2000) 
+                            })
+                            .then((res)=>{
+                                return res *2
+                            })
+                            .then((res)=>{
+                                return res *3
+                            })
+                            .then((res)=>{
+                                console.log('res',res)
+                            })
+                        </script>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12 col-md-4 col-lg-4 col-sm-6 "> 
+                                <pre>new Promise ((success,error)=&gt;{
+    setTimeout(()=&gt; success(5),2000) 
+})
+.then((res)=&gt;{
+    return res *2
+})
+.then((res)=&gt;{
+    return res *3
+})
+.then((res)=&gt;{
+    console.log('res',res)
+})
+                               </pre>
+                                
+                            </div>
+                            <div class=" col-12 col-md-8 col-lg-8 col-sm-6 ">
+                                <pre>function login(uName,pwd) {
+    return new Promise((resolve,reject)=&gt;{
+        setTimeout(()=&gt;{
+            if(uName == "admin" &amp;&amp; pwd =="1122"){
+                resolve({userId:121})
+            } else {
+                reject("Wrong Credential")
+            }
+        },2000)
+    })
+}
+function getUserProfile(userId) {
+    return new Promise((resolve,reject)=&gt;{
+        setTimeout(()=&gt; resolve({uName:"admin",city:"Pune",emial:'admin@gmail.com'}))
+    })
+} 
+login('admin','1122')
+.then((result)=&gt;{
+    getUserProfile(result).then((profile)=&gt;{
+        console.log("User Found",profile)
+    })
+}).catch((error)=&gt;{
+    console.log(error)
+                                    })
+                                </pre>
+                                 <script>
+                                    function login(uName,pwd) {
+                                        return new Promise((resolve,reject)=>{
+                                            setTimeout(()=>{
+                                                if(uName == "admin" && pwd =="1122"){
+                                                    resolve({userId:121})
+                                                } else {
+                                                    reject("Wrong Credential")
+                                                }
+                                            },2000)
+                                        })
+                                    }
+                                    function getUserProfile(userId) {
+                                        return new Promise((resolve,reject)=>{
+                                            setTimeout(()=> resolve({uName:"admin",city:"Pune",emial:'admin@gmail.com'}))
+                                        })
+                                    } 
+                                    login('admin','1122')
+                                    .then((result)=>{
+                                        getUserProfile(result).then((profile)=>{
+                                            console.log("User Found",profile)
+                                        })
+                                    }).catch((error)=>{
+                                        console.log(error)
+                                    })
+                                 </script>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                     
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Parallel Execution (Promise.all())
+                    </div>
+                    <div class="card-body">
+                         <p>When multiple async tasks can be executed simultaneously, use Promise.all().</p>
+                         <ul>
+                            <li>All promises resolve together → Faster execution.</li>
+                            <li>If any promise fails, the whole Promise.all() fails!</li>
+                         </ul>
+                        <script>
+                           const promise1 =  new Promise(result => setTimeout(()=> result(3)));
+                           const promise2 =  new Promise(result => setTimeout(()=> result(5)));
+                           const promise3 =  new Promise(result => setTimeout(()=> result(8)));
+
+                           Promise.all([promise1,promise2,promise3]).then((res)=>{
+                            console.log(res[0])
+                            console.log(res[1])
+                            console.log(res[2])
+                           })
+                        </script>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12"> 
+                                <pre> const promise1 =  new Promise(result =&gt; setTimeout(()=&gt; result(3)));
+ const promise2 =  new Promise(result =&gt; setTimeout(()=&gt; result(5)));
+ const promise3 =  new Promise(result =&gt; setTimeout(()=&gt; result(8)));
+
+ Promise.all([promise1,promise2,promise3]).then((res)=&gt;{
+  console.log(res[0])
+  console.log(res[1])
+  console.log(res[2])
+ })
+                               </pre>
+                                
+                            </div>
+                          
+                        </div>
+                        
+
+                    </div>
+                     
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Promise.allSettled()
+                    </div>
+                    <div class="card-body">
+                         <p>Even if one promise fails, Promise.allSettled() ensures all results are received.</p>
+                         
+                        <script>
+                           const prs1 =  new Promise(result => setTimeout(()=> result(3)));
+                           const prs2 =  new Promise((result,reject) => setTimeout(()=> reject("Error")));
+                           const prs3 =  new Promise(result => setTimeout(()=> result(8)));
+
+                           Promise.allSettled([prs1,prs2,prs3]).then((res)=>{
+                            console.log(res)
+                             
+                           })
+                        </script>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12"> 
+                                <pre>const prs1 =  new Promise(result =&gt; setTimeout(()=&gt; result(3)));
+const prs2 =  new Promise((result,reject) =&gt; setTimeout(()=&gt; reject("Error")));
+const prs3 =  new Promise(result =&gt; setTimeout(()=&gt; result(8)));
+
+Promise.allSettled([prs1,prs2,prs3]).then((res)=&gt;{
+ console.log(res)
+  
+})
+                               </pre>
+                               <pre>0 :  {status: 'fulfilled', value: 3}
+1 :  {status: 'rejected', reason: 'Error'}
+2 :  {status: 'fulfilled', value: 8}
+                               </pre>
+                                
+                            </div>
+                          
+                        </div>
+                        
+
+                    </div>
+                     
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Promise.allSettled()
+                    </div>
+                    <div class="card-body">
+                         <p>Even if one promise fails, Promise.allSettled() ensures all results are received.</p>
+                         
+                        <script>
+                            const timer1 = new Promise(res => setTimeout(() => res(5000), 5000));
+                            const timer2 = new Promise(res => setTimeout(() => res(3000), 3000));
+                            const timer3 = new Promise(res => setTimeout(() => res(6000), 6000)); 
+                            Promise.race([timer1, timer2, timer3]).then((res) => { 
+                                console.log(res)
+                            }) 
+                        </script>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12"> 
+                                <pre>const timer1 = new Promise(res =&gt; setTimeout(() =&gt; res(5000), 5000));
+const timer2 = new Promise(res =&gt; setTimeout(() =&gt; res(3000), 3000));
+const timer3 = new Promise(res =&gt; setTimeout(() =&gt; res(6000), 6000)); 
+Promise.race([timer1, timer2, timer3]).then((res) =&gt; { 
+    console.log(res)
+}) 
+                               </pre>
+                               <pre>3000
+                               </pre>
+                                
+                            </div>
+                          
+                        </div>
+                        
+
+                    </div>
+                     
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Promise.allSettled()
+                    </div>
+                    <div class="card-body">
+                         <p>Even if one promise fails, Promise.allSettled() ensures all results are received.</p>
+                         
+                        <script>
+                             
+                        </script>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12"> 
+                                <pre>const timer1 = new Promise(res =&gt; setTimeout(() =&gt; res(5000), 5000));
+const timer2 = new Promise(res =&gt; setTimeout(() =&gt; res(3000), 3000));
+const timer3 = new Promise(res =&gt; setTimeout(() =&gt; res(6000), 6000)); 
+Promise.race([timer1, timer2, timer3]).then((res) =&gt; { 
+    console.log(res)
+}) 
+                               </pre>
+                               <pre>3000
+                               </pre>
+                                
+                            </div>
+                          
+                        </div>
+                        
+
+                    </div>
+                     
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Cancels request Just Like switchMap from rxjs
+                    </div>
+                    <div class="card-body"> 
+                        <script>
+                            function delay(sec) {
+                                return new Promise((suc, error) => setTimeout(() => error('api takes time to load'), sec))
+                            }
+                            Promise.race([
+                                fetch("https://jsonplaceholder.typicode.com/users"),
+                                delay(90)
+                            ])
+                            .then((res) => {
+                                
+                                console.log(res)
+                            }).catch((error) => {
+                                
+                                console.log("Ap call Canceled")
+                            })
+                        </script>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12"> 
+                                <pre> function delay(sec) {
+     return new Promise((suc, error) =&gt; setTimeout(() =&gt; error('api takes time to load'), sec))
+ }
+ Promise.race([
+     fetch("https://jsonplaceholder.typicode.com/users"),
+     delay(90)
+ ])
+ .then((res) =&gt; {
+     
+     console.log(res)
+ }).catch((error) =&gt; {
+     
+     console.log("Ap call Canceled")
+ })
+                               </pre>  
+                            </div> 
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        How is a Promise different from a callback
+                    </div>
+                    <div class="card-body"> 
+                        <p>
+                            A callback is simply a function passed as an argument to another function, which is then invoked after some task is completed
+                        </p>
+                        <p>A Promise is an object that represents the eventual completion or failure of an async operation, and its resulting value. It can have 3 states</p>
+                        <ul>
+                            <li>pending </li>
+                            <li>fulfilled </li>
+                            <li>rejected </li>
+                        </ul>
+                       <div class="row">
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                            
+                            <script>
+                                function test(callback){
+                                    setTimeout(()=>{
+                                        console.log("timeout Executed")
+                                        callback();
+                                    },2000)
+                                }
+                                test(function print(){
+                                    console.log("CallBack Executed")
+                                }) 
+                            </script>
+                            <pre>function test(callback){
+    setTimeout(()=&gt;{
+        console.log("Test Set timeout Executed")
+        callback();
+    },2000)
+}
+test(function print(){
+    console.log("Call Back Got Executed")
+}) 
+                            </pre>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                           
+                            <script>
+                                 debugger;
+                                function getApi(callback) {
+                                    fetch("https://jsonplaceholder.typicode.com/users")
+                                    .then((res)=> res.json())
+                                    .then((res)=>{
+                                        debugger;
+                                        callback(res)
+                                    })
+                                } 
+                                var printApiResult =  function (data) {
+                                     debugger;
+                                    console.log("API Result"+ data.length )
+                                } 
+                                getApi(printApiResult) 
+                            </script>
+                            <pre>function getApi(callback) {
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then((res)=&gt; res.json())
+    .then((res)=&gt;{ 
+        callback(res)
+    })
+} 
+var printApiResult =  function (data) { 
+    console.log("API Result"+ data.length )
+} 
+getApi(printApiResult) 
+                            </pre>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                            <script>
+                                debugger;
+                                function getApi() {
+                                    return fetch("https://jsonplaceholder.typicode.com/users")
+                                        .then((res) => res.json())
+                                }
+                                getApi()
+                                    .then((res) => {
+                                        debugger;
+                                        console.log("API Result" + res.length)
+                                    })
+                            </script>
+                            <pre>function getApi() {
+    return fetch("https://jsonplaceholder.typicode.com/users")
+        .then((res) =&gt; res.json())
+}
+getApi()
+.then((res) =&gt; { 
+    console.log("API Result" + res.length)
+})
+                            </pre>
+                        </div>
+                       </div> 
+                    </div> 
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        What happens if a Promise is neither resolved nor rejected?
+                    </div>
+                    <div class="card-body"> 
+                        <p>
+                            If a Promise is neither resolved nor rejected, it stays in the pending state forever.
+                        </p>
+                        <script>
+                            const stuckPromise =  new Promise((resolve,reject)=>{
+
+                            })
+                            stuckPromise.then((res)=>{
+                                console.log('success')
+                            }).catch((error)=>{
+                                console.log('error')
+                            })
+                        </script>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12"> 
+                                <pre>const stuckPromise =  new Promise((resolve,reject)=&gt;{
+})
+stuckPromise.then((res)=&gt;{
+    console.log('success')
+}).catch((error)=&gt;{
+    console.log('error')
+})
+                               </pre>  
+                            </div> 
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+        </div>
+        </section>

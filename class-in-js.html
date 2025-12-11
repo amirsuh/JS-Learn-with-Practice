@@ -1,0 +1,508 @@
+<style>
+    h6 {
+        font-weight: 600;
+        margin-bottom: 1rem
+    }
+</style>
+<section class="container mb-5">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    JavaScript Class
+                </div>
+                <script>
+                    class Student {
+                        constructor(surname, email) {
+                            this.surName = surname;
+                            this.emialId = email
+                        }
+                        printDetail() {
+                            console.log(this.surName + " " + this.emialId)
+                        }
+                    }
+
+                    class Subject extends Student {
+                        constructor(surname, email, subName) {
+                            super(surname, email);
+                            this.subjectName = subName;
+                        }
+                        printSubName() {
+                            console.log("Subject is ", this.subjectName)
+                        }
+                    }
+
+                    const ramesh = new Subject("Tendular", "sachin@gmial.com", "English");
+                    ramesh.printDetail()
+                    ramesh.printSubName()
+                </script>
+                <div class="card-body">
+                    <p>Classes in JavaScript are templates for creating objects. They encapsulate data with code to work
+                        on that data. Classes were introduced in ES6 and provide a more structured and cleaner syntax to
+                        work with objects and inheritance compared to traditional prototype-based inheritance.</p>
+                    <ul>
+                        <li>Defining a Class</li>
+                        <pre>class Student {
+    constructor(surname,email) {
+        this.surName = surname;
+        this.emialId = email
+    }
+    printDetail() {
+        console.log(this.surName + " "+ this.emialId)
+    }
+}
+                            </pre>
+                        <li>Creating Objects from a Class</li>
+                        <pre>  const ramesh = new Student("Tendular","sachin@gmial.com"); //output Tendular sachin@gmial.com</pre>
+                        <li>Key Features of JavaScript Classes
+                            <ul>
+                                <li>this.surName and this.emialId attach properties to the object being created.</li>
+                                <li>When you do new User(...), a fresh object is created, and this inside the
+                                    constructor refers to that specific object.</li>
+                                <li>Constructor Method: A special method that initializes object properties when an
+                                    object is created.</li>
+                                <li>Methods: Functions inside a class that define behaviors (e.g., greet())..</li>
+                                <li>Encapsulation: Keeping properties and methods inside a class, allowing controlled
+                                    access.</li>
+                                <li>Inheritance: One class can inherit properties and methods from another using
+                                    extends.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    Inheritance in JavaScript Class
+                </div>
+                <script>
+                    class person {
+                        constructor(surname, email) {
+                            this.surName = surname;
+                            this.emialId = email
+                        }
+                        printDetail() {
+                            console.log(this.surName + " " + this.emialId)
+                        }
+                    }
+
+                    class Employee extends person {
+
+                        constructor(surname, email, subName) {
+                            super(surname, email);
+                            this.subjectName = subName;
+                        }
+                        printSubName() {
+                            console.log("Subject is ", this.subjectName)
+                        }
+                    }
+
+                    const sachin = new Employee("Tendular", "sachin@gmial.com", "English");
+                    sachin.printDetail()
+                    sachin.printSubName()
+                </script>
+                <div class="card-body">
+                    <p>Inheritance allows a class to extend another class, inheriting its properties and methods. This
+                        is achieved using the extends keyword</p>
+                    <ul>
+                        <li>When child class has its own constructor it is mandatory to have super.</li>
+                        <li>If you override a method but still want to run the parent’s version of it then also it is
+                            mandatory to have super.</li>
+
+                    </ul>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <pre>class person {
+    constructor(surname,email) {
+        this.surName = surname;
+        this.emialId = email
+    }
+    printDetail() {
+        console.log(this.surName + " "+ this.emialId)
+    }
+}
+
+class Employee extends Student {
+    constructor(surname,email,subName){
+        super(surname,email);
+        this.subjectName =subName; 
+    }
+    printSubName() {
+        console.log("Subject is ", this.subjectName)
+    }
+}
+
+const sachin = new Subject("Tendular","sachin@gmial.com","English");
+sachin.printDetail()
+sachin.printSubName()
+                                                                </pre>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <pre>class Product {
+  constructor(name){
+      this.productName = name;
+  } 
+  printProductName() {
+      console.log(`Product Name -${this.productName}`)
+  }
+}
+class ProductSku extends Product { 
+
+  printProductInfo() {
+      const randomId =  Math.floor((Math.random() * 10) + 1);
+      console.log(`Product Name is ${this.productName} and Id is ${randomId}`)
+  }
+}
+const newProduct = new ProductSku("Mobile");
+newProduct.printProductName();
+newProduct.printProductInfo();
+                                </pre>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    Override Method by Inheritance in JavaScript Class
+                </div>
+                <script>
+                    class Product {
+                        constructor(name) {
+                            this.productName = name;
+                        }
+                        printProductName() {
+                            console.log(`Product Name -${this.productName}`)
+                        }
+                    }
+                    class ProductSku extends Product {
+
+                        printProductInfo() {
+                            const randomId = Math.floor((Math.random() * 10) + 1);
+                            console.log(`Product Name is ${this.productName} and Id is ${randomId}`)
+                        }
+                    }
+                    const newProduct = new ProductSku("Mobile");
+                    newProduct.printProductName();
+                    newProduct.printProductInfo();
+                </script>
+                <script>
+                    class EmploeeBasic {
+                        constructor(name) {
+                            this.empName = name;
+                        }
+                        printName() {
+                            console.log(`Employuee Name is ${this.empName}`)
+                        }
+                    }
+                    class EmployeeDetails extends EmploeeBasic {
+                        constructor(name, contactNo) {
+                            super(name)
+                            this.contactNo = contactNo;
+                        }
+                        printName() {
+                            console.log(`Employee Name is - ${this.empName} and Mobile No is:${this.contactNo}`)
+                        }
+                    }
+
+                    const newEMp = new EmployeeDetails("Chetan", "9900990000")
+                    newEMp.printName();
+                </script>
+                <div class="card-body">
+                    <p> if you create a method in a parent class, you can totally override that method in a child class
+                        using inheritance via the extends keyword.</p>
+                    <ul>
+                        <li>Defining a Class</li>
+                        <pre>class EmploeeBasic {
+    constructor(name){
+        this.empName = name;
+    } 
+    printName() {
+        console.log(`Employuee Name is ${this.empName}`)
+    }
+}
+class EmployeeDetails extends EmploeeBasic{
+    constructor(name,contactNo) {
+        super(name)
+        this.contactNo = contactNo;
+    }
+    printName() {
+        console.log(`Employee Name is - ${this.empName} and Mobile No is:${this.contactNo}`)
+    }
+}
+
+const newEMp = new EmployeeDetails("Chetan","9900990000")
+newEMp.printName();
+                            </pre>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    Private &amp; Public Fields
+                </div>
+                <script>
+                    class product {
+                        #sku
+                        constructor(sku, name) {
+                            this.#sku = sku;
+                            this.productName = name;
+                        }
+
+                        printProductInfo() {
+                            console.log(`Product SKU is ${this.#sku} and Name is ${this.productName}`)
+                        }
+                        getProductSku() {
+                            return this.#sku;
+                        }
+                    }
+
+                    const mobile = new product('mob-11', "A2");
+                    mobile.printProductInfo()
+                    console.log(mobile.getProductSku());
+                    //    console.log(mobile.#sku)
+                </script>
+                <div class="card-body">
+
+                    <pre> class product {
+     #sku
+     constructor(sku,name) {
+         this.#sku  = sku;
+         this.productName = name;
+     }
+
+     printProductInfo () {
+         console.log(`Product SKU is ${this.#sku} and Name is ${this.productName}`)
+     }
+     getProductSku() {
+         return this.#sku;
+     }
+ }
+
+ const mobile =  new product('mob-11',"A2");
+ mobile.printProductInfo()
+ console.log(mobile.getProductSku());
+ //console.log(mobile.#sku)
+                            </pre>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    Static methods
+                </div>
+                <script>
+                    class MathOperation {
+                        static add(num1, num2) {
+                            return num1 + num2;
+                        }
+                    }
+                    console.log(MathOperation.add(3, 7))
+                    const math = new MathOperation();
+                    //console.log(math.add(22,33)) //math.add is not a function
+                </script>
+                <div class="card-body">
+                    <p>Static methods are defined on the class itself, not on instances of the class. They are called on
+                        the class, not on objects created from the class.</p>
+                    <pre>class MathOperation {
+ static add(num1, num2) {
+     return num1+ num2;
+ }
+} 
+console.log(MathOperation.add(3,7)) 
+const math =  new MathOperation();
+//console.log(math.add(22,33)) //math.add is not a function
+                            </pre>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    What are getters and setters in JavaScript classes?
+                </div>
+                <script>
+                    class Person {
+                        constructor(name) {
+                            this._name = name;
+                        }
+                        get name() {
+                            return this._name;
+                        }
+                        set name(newName) {
+                            this._name = newName;
+                        }
+                    }
+
+                    const person = new Person('Alice');
+                    console.log(person.name); // Output: Alice
+                    person.name = 'Bob';
+                    console.log(person.name); // Output: Bob
+
+                </script>
+                <div class="card-body">
+                    <p>Getters and setters allow you to define object accessors (computed properties). A getter method
+                        is used to get the value of a property, and a setter method is used to set the value of a
+                        property..</p>
+                    <pre>class Person {
+    constructor(name) {
+      this._name = name;
+    }
+    get name() {
+      return this._name;
+    }
+    set name(newName) {
+      this._name = newName;
+    }
+  }
+  
+const person = new Person('Alice');
+console.log(person.name); // Output: Alice
+person.name = 'Bob';
+console.log(person.name); // Output: Bob
+                            </pre>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    what's use of get and set
+                </div>
+                <script>
+                    class ProductPrice {
+                        constructor(name, price) {
+                            this.name = name;
+                            this.price = price
+                        }
+                        get _price() {
+                            return this.price;
+                        }
+
+                        get getTaxablePrice() {
+                            const tax = 12.5;
+                            return (this.price * tax) / 100;
+                        }
+
+                        set _price(value) {
+                            debugger;
+                            if (value != undefined && value != null && value != 0) {
+                                this.price = value;
+                            }
+                        }
+                    }
+                    const mobile2 = new ProductPrice("Camred", 1200);
+                    mobile2._price = 0;
+                    debugger;
+                    console.log(mobile2.getTaxablePrice)
+                    console.log(mobile2._price)
+                </script>
+                <div class="card-body">
+                    <p>So yeah, get and set are optional, but they give you a clean, powerful, and controlled way to
+                        manage access to class data — especially useful in real-world, complex apps.</p>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <pre>class ProductPrice { 
+    constructor(name, price){
+        this.name = name;
+        this.price =  price
+    }
+    get _price() {
+        return this.price;
+    }
+
+    set _price(value) {
+        debugger;
+        if(value != undefined &amp;&amp; value != null &amp;&amp; value !=0) {
+            this.price = value;
+        }
+    }
+}
+const mobile2 =  new ProductPrice("Camred",1200);
+mobile2._price = 0;
+debugger;
+console.log( mobile2._price )
+                                    </pre>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                            <pre>class ProductPrice { 
+    constructor(name, price){
+        this.name = name;
+        this.price =  price
+    }
+    
+    get getTaxablePrice() {
+        const tax = 12.5;
+        return (this.price * tax) / 100;
+    } 
+     
+}
+const mobile2 =  new ProductPrice("Camred",1200); 
+console.log(mobile2.getTaxablePrice) 
+                                    </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    static properties in classes
+                </div>
+                <script>
+                    class Magic {
+                        static count = 0;
+
+                        constructor() {
+                            Magic.count++;
+                        }
+                    }
+
+                    const m1 = new Magic();
+                    const m2 = new Magic();
+
+                    console.log(m1.count);
+                    console.log(Magic.count);
+
+
+                </script>
+                <div class="card-body">
+                    <p>static means the property belongs to the class, not its instances.</p>
+                    <pre> class Magic {
+     static count = 0;
+
+     constructor() {
+         Magic.count++;
+     }
+ }
+
+ const m1 = new Magic();
+ const m2 = new Magic();
+
+ console.log(m1.count);
+ console.log(Magic.count);
+                            </pre>
+                    <ul>
+                        <li>console.log(m1.count); =&gt; undefined as mentioned count wont be accessible on instance
+                        </li>
+                        <li> console.log(Magic.count); 2 because we created two instances and each one increased the
+                            static count.</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

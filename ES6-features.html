@@ -1,0 +1,814 @@
+
+<style>
+    h6 {
+        font-weight: 600;
+        margin-bottom: 1rem
+    }
+</style>
+<section class="container mb-5">
+<div class="row">
+            <div class="col-12 col-md-9 col-lg-9 col-sm-12">
+
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary">
+                                Var - Let - Const
+                            </div>
+                            <div class="card-body">
+                                <script>
+                                    function printVal() {
+                                        console.log(x);//undefined
+                                        var x = 10;
+                                        if (true) {
+                                            var x = 20;
+                                        }
+                                        console.log(x)//20
+                                    }
+                                    //printVal()
+                                    function printVal2() {
+                                        let x = 10;
+                                        console.log(x);
+                                        if (true) {
+                                            let x = 20;
+                                            console.log(x)//20
+                                        }
+
+                                    }
+                                    printVal2()
+                                </script>
+                                <ul>
+                                    <li>Variables declared with let and const are stored in the Temporal Dead Zone and
+                                        not added to window.</li>
+                                    <li>var declared variables are properties of the global object in global scope.</li>
+                                </ul>
+                                <table class="table table-bordered table-sm" data-start="494" data-end="1346" node="[object Object]">
+                                    <thead data-start="494" data-end="614">
+                                        <tr data-start="494" data-end="614">
+                                            <th data-start="494" data-end="517">Feature</th>
+                                            <th data-start="517" data-end="545"><code data-start="519" data-end="524">var</code></th>
+                                            <th data-start="545" data-end="579"><code data-start="547" data-end="552">let</code></th>
+                                            <th data-start="579" data-end="614"><code data-start="581" data-end="588">const</code></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-start="739" data-end="1346">
+                                        <tr data-start="739" data-end="857">
+                                            <td>Scope</td>
+                                            <td>Function-scoped</td>
+                                            <td>Block-scoped</td>
+                                            <td>Block-scoped</td>
+                                        </tr>
+                                        <tr data-start="858" data-end="979">
+                                            <td>Hoisting</td>
+                                            <td>Yes (initialized as <code data-start="903" data-end="914">undefined</code>)</td>
+                                            <td>Yes (but in <strong data-start="930" data-end="937">TDZ</strong>)</td>
+                                            <td>Yes (but in <strong data-start="961" data-end="968">TDZ</strong>)</td>
+                                        </tr>
+                                        <tr data-start="980" data-end="1094">
+                                            <td>Re-declaration</td>
+                                            <td>✅ Allowed (in same scope)</td>
+                                            <td>❌ SyntaxError</td>
+                                            <td>❌ SyntaxError</td>
+                                        </tr>
+                                        <tr data-start="1095" data-end="1228">
+                                            <td>Re-assignment</td>
+                                            <td>✅ Allowed</td>
+                                            <td>✅ Allowed</td>
+                                            <td>❌ Not Allowed (but object props can be mutated)</td>
+                                        </tr>
+                                        <tr data-start="1229" data-end="1346">
+                                            <td>Temporal Dead Zone</td>
+                                            <td>❌ Not applicable</td>
+                                            <td>✅ Exists</td>
+                                            <td>✅ Exists</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                        <pre>function printVal() {
+    console.log(x);//ReferenceError
+    let x = 10;
+    if(true) {
+        let x= 20;
+        console.log(x)//20
+    }
+    
+}
+printVal()
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                        <pre>function printVal2() {
+    console.log(x);//ReferenceError: 
+       Cannot access 'x' before initialization
+    let x = 10;
+    if (true) {
+        let x = 20;
+        console.log(x)//20
+    }
+}
+printVal2()
+</pre>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                        <pre>function printVal2() {
+    let x = 10;
+    console.log(x);//10
+    if (true) {
+        let x = 20;
+        console.log(x)//20
+    }
+
+}
+printVal2()
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary">
+                                const – Immutable Bindings, not immutable values
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li> Means when we declare variable with const It Cannot be reassigned</li>
+                                    <li>But if its Array or Object we can change its Valye but still can't reassigned
+                                    </li>
+                                    <li>Basically you can't use = operator again.</li>
+                                </ul>
+
+                                <div class="row">
+                                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                        <pre>const productName = "Mobile";
+productName =  "asas";
+console.log(productName) 
+//Assignment to constant variable.
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                        <pre>const product = {
+    productName: 'Mobile'
+}
+product.productName = "Camera"; //Allowed
+product = {
+    productName: "Camera"
+} 
+//Assignment to constant variable.
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                        <pre>const cityList = ["Pune","Nagpur"];
+cityList.push("Mumbai")//allowed
+cityList = ["Jaipur","Jabalpur"] 
+//Assignment to constant variable.
+                                        </pre>
+                                    </div>
+                                </div>
+                                <script>
+                                    const productName = "Mobile";
+                                    //productName = "asas";
+                                    console.log(productName) //Assignment to constant variable.
+
+
+                                    const productDetails = {
+                                        productName: 'Mobile'
+                                    }
+                                    productDetails.productName = "Camera";
+                                    // productDetails = {
+                                    //     productName: "Camera"
+                                    // }
+
+                                    const cityList = ["Pune", "Nagpur"];
+                                    cityList.push("Mumbai")
+                                    // cityList = ["Jaipur", "Jabalpur"]
+
+                                    function printFor() {
+                                        for (var i = 0; i < 3; i++) {
+                                            function printNo(num) {
+                                                setTimeout(() => {
+                                                    console.log(num)
+                                                }, 1000)
+                                            }
+                                            printNo(i)
+                                        }
+                                    }
+                                    printFor()
+
+                                </script>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary">
+                                Arrow Functions
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>yes it's short to write but not just that so many difference are there</li>
+                                    <li>if single statement return is there no Need of return keyword</li>
+                                    <li>Does't support Hoisting</li>
+                                </ul>
+                                <h6>How this differes in Both Function </h6>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>const person = {
+  name: "Alice",
+  sayHello: function () {
+    console.log("Hello from", this.name);
+  },
+  sayHelloArrow: () =&gt; {
+    console.log("Hello from", this.name);
+  }
+};
+person.sayHello(); //Alice
+person.sayHelloArrow(); //undefined
+                                        </pre>
+                                        <p>normal function "this" refers to global object</p>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>var name = "Roy"
+const person = {
+  name: "Alice",
+  sayHello: function () {
+    console.log("Hello from", this.name);
+  },
+  sayHelloArrow: () =&gt; {
+    console.log("Hello from", this.name);
+  }
+};
+person.sayHello(); //Alice
+person.sayHelloArrow(); //Roy
+                                        </pre>
+                                        <p> in arrow func this refers to surrounding scope where it is created/ or
+                                            executed</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>const user = {
+  age: 25,
+  showAgeNormal: function () {
+    setTimeout(function () {
+      console.log("Normal:", this.age);
+    }, 1000);
+  },
+  showAgeArrow: function () {
+    setTimeout(() =&gt; {
+      console.log("Arrow:", this.age);
+    }, 1000);
+  }
+};
+
+user.showAgeNormal(); // Normal: undefined ❌ (this is window)
+user.showAgeArrow();  // Arrow: 25 ✅ (this is user)
+</pre>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        ✅ In setTimeout, this will point to the global object only if you use a normal
+                                        function.
+                                    </div>
+                                </div>
+                                <h6>arguments </h6>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>function test() {
+    console.log(arguments);
+  }
+test(1, 2, 3); //Works
+
+function addNumbers(...args) {
+    let sum = 0
+    for (let i = 0; i &lt; args.length; i++) {
+      sum = sum + args[i]
+    }
+    return sum
+}
+const result = addNumbers(2,3,4,5);
+console.log(result)
+const result2 = addNumbers(3,3,5,5);
+console.log(result2)
+                                        </pre>
+
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>const arrowTest = () =&gt; {
+  console.log(arguments);//arguments is not defined
+};
+arrowTest(1, 2, 3); 
+as arrow func doesn't have arguments can't use rest operator
+                                        </pre>
+
+                                    </div>
+                                </div>
+                                <h6>Can't Use new Operator </h6>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>function Product(name) {
+    this.productName = name;
+    console.log(this.productName)
+}
+new Product("Mobile")
+                                        </pre>
+                                        <p>Normal func can be invoked by new operator</p>
+
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>const Print = () =&gt; {};
+const text = new Print(); //Print is not a constructor
+                                        </pre>
+                                        <p>Arrow fun can't be invoked with new </p>
+
+                                    </div>
+                                </div>
+                                <script>
+                                    function Product(name) {
+                                        this.productName = name;
+                                        console.log(this.productName)
+                                    }
+                                    new Product("Mobile")
+                                </script>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary">
+                                Template Literals
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>are string literals that allow embedded expressions, multi-line strings, string
+                                        interpolation, and even function-based tag processing.</li>
+                                    <li>They are enclosed by backticks (`) instead of single ' or double " quotes.</li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                        concatination
+                                        <pre> var firstName = "Chetan";
+ var lastName = "Jogi";
+
+ var fullName=  firstName + " " + lastName;
+ var fullName2 =  `${firstName} ${lastName}`;  
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                        string interpolation
+                                        <pre>var num1 = 12;
+var num2 = 23;
+var result = `Sum is ${num1+ num2}`;
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                        multi-line
+                                        <pre>var productDetaild= `Mobile is a product
+It has 2 Varients and 
+a discounted price`;
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        Function Calls Inside Interpolation
+                                        <pre>function printSquare(num) {
+    return num * num;
+}
+var squareStr  = `Square of 3 is ${printSquare(3)}`
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        Tagged Template Literals
+                                        <pre>function printStr(strings,...values) {
+    return strings[0] + values[0] +  strings[1];
+}
+var studName = "Chetan";
+var text = printStr`Hello ${studName}, Welcome`;
+console.log(text)
+                                        </pre>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    var firstName = "Chetan";
+                                    var lastName = "Jogi";
+
+                                    var fullName = firstName + " " + lastName;
+                                    var fullName2 = `${firstName} ${lastName}`;
+
+                                    var num1 = 12;
+                                    var num2 = 23;
+
+                                    var result = `Sum is ${num1 + num2}`;
+                                    console.log(result)
+                                    var productDetaild = `Mobile is a product
+                                 It has 2 Varients and 
+                                 a discounted price`;
+                                    function printSquare(num) {
+                                        return num * num;
+                                    }
+                                    var squareStr = `Square of 3 is ${printSquare(3)}`
+                                    console.log(squareStr)
+
+                                    function printStr(strings, ...values) {
+                                        return strings[0] + values[0] + strings[1];
+                                    }
+                                    var studName = "Chetan";
+                                    var text = printStr`Hello ${studName}, Welcome`;
+                                    console.log(text)
+                                </script>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary">
+                                Spread Operator
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Spread Operator lets you Expands an iterable (like array, string, object) into
+                                    individual elements.
+                                </p>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        Clone / Combine Array
+                                        <pre>var state1City = ["Pune","Nagpur"];
+var state2City = ["Mumbai","Thane"];
+var state1Copy = [state1City]
+var stateList = [...state1City,...state2City];
+var stateList2 = [...state1City, "Jabalpur", ...state2City];
+var stateList3 = [...state2City,"Panji","Bhopal"]
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        Function Arguments
+                                        <pre>function addThreeNo(n1,n2,n3) {
+    return n1+ n2+ n3;
+}
+const noList = [2,2,3];
+console.log(addThreeNo(...noList))
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-7 col-lg-7 col-sm-6">
+                                        Object Cloning &amp; Merging
+                                        <pre>const student = {
+    name:"Chetan",
+    github:"voidChetan"
+}
+const studAddress= {
+    city: "Nagpur",
+    state:"MAHA"
+}
+const copyStud = {...student};
+
+const studDetails = {...student,...studAddress}
+const studFullDetauks = {...student,studId:232,...studAddress};
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-5 col-lg-5 col-sm-6">
+                                        Spreading in Strings
+                                        <pre>var strArray = [...myStr];
+console.log(strArray)
+//['C', 'h', 'e', 't', 'a', 'n']
+var strObj2 = {...myStr};
+console.log(strObj2)
+//{0: 'C', 1: 'h', 2: 'e', 3: 't', 4: 'a', 5: 'n'}
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                var state1City = ["Pune", "Nagpur"];
+                                var state2City = ["Mumbai", "Thane"];
+                                var stateList = [...state1City, ...state2City];
+
+                                var stateList2 = [...state1City, "Jabalpur", ...state2City];
+                                var stateList3 = [...state2City, "Panji", "Bhopal"]
+
+                                function addThreeNo(n1, n2, n3) {
+                                    return n1 + n2 + n3;
+                                }
+                                const noList = [2, 2, 3];
+                                console.log(addThreeNo(...noList));
+
+                                const student = {
+                                    name: "Chetan",
+                                    github: "voidChetan"
+                                }
+                                const studAddress = {
+                                    city: "Nagpur",
+                                    state: "MAHA"
+                                }
+                                const copyStud = { ...student };
+
+                                const studDetails = { ...student, ...studAddress }
+                                const studFullDetauks = { ...student, studId: 232, ...studAddress };
+
+                                var myStr = "Chetan";
+
+                                var strArray = [...myStr];
+                                console.log(strArray)//['C', 'h', 'e', 't', 'a', 'n']
+                                var strObj2 = { ...myStr };
+                                console.log(strObj2)//{0: 'C', 1: 'h', 2: 'e', 3: 't', 4: 'a', 5: 'n'}
+
+                            </script>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary">
+                                difference between shallow copy and deep copy
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <h6>Shallow Copy</h6>
+                                        <ul>
+                                            <li>Copies only the top-level properties of an object.</li>
+                                            <li>If the object contains nested objects, it copies references, not actual
+                                                copies.</li>
+                                            <li>Changes to nested data affect both the original and the copied object.
+                                            </li>
+
+                                        </ul>
+                                        <pre>const original = {
+    name: 'Alice',
+    address: {
+        city: 'Delhi'
+    }
+};
+const shallowCopy = { ...original };
+shallowCopy.address.city = 'Mumbai';
+console.log(original.address.city); // 👉 'Mumbai' (original is affected)
+
+                                        </pre>
+                                        <script>
+                                            const original = {
+                                                name: 'Alice',
+                                                address: {
+                                                    city: 'Delhi'
+                                                }
+                                            };
+
+                                            const shallowCopy = { ...original };
+                                            shallowCopy.address.city = 'Mumbai';
+
+                                            console.log(original.address.city); // 👉 'Mumbai' (original is affected)
+                                        </script>
+                                    </div>
+                                    <div class="col-12 col-md-5 col-lg-5 col-sm-6">
+                                        <h6>Deep Copy</h6>
+                                        <ul>
+                                            <li>Copies everything recursively, including all nested objects and arrays.
+                                            </li>
+                                            <li>The copy is completely independent of the original.</li>
+                                            <li>Changes in the copy do not affect the original and vice versa.</li>
+                                        </ul>
+                                        <pre>const original = {
+    name: 'Alice',
+    address: {
+        city: 'Delhi'
+    }
+};
+const shallowCopy = { ...original };
+shallowCopy.address.city = 'Mumbai';
+console.log(original.address.city); // 👉 'Delhi' (original is NOT affected)
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+
+                            </script>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary">
+                                Rest Operator
+                            </div>
+                            <div class="card-body">
+                                <p>Collects multiple elements into a single array or object.</p>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>function addAnyNo(...nums) {
+    let sum  = 0;
+    for (let index = 0; index &lt; nums.length; index++) {
+        sum = sum + nums[index]; 
+    }
+    return sum;
+}
+console.log(addAnyNo(2,4,5))
+console.log(addAnyNo(1,3,6,7,8,9))
+
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <p>rest should be last only</p>
+                                        <pre>function printDetails(firstParam,...restParam) {
+    console.log(firstParam)//AAA'
+    console.log(restParam)//['BBB','CCC','DDD']
+}
+printDetails('AAA','BBB','CCC','DDD')
+                                        </pre>
+                                    </div>
+                                    <div class="col-12">
+                                        <pre>const [firstState,...restState] = ['MAHA','Goa','Punjab','Gujrat']
+
+console.log(firstState);//MAHA
+console.log(restState)//['Goa', 'Punjab', 'Gujrat']
+                                        </pre>
+                                    </div>
+                                    <div class="col-12">
+                                        <pre>const {empId,...restObj} = {name:'chetan',empId:'ER-223',tech:'React',email:'che23@gmail.com'};
+console.log(empId);//ER-223
+console.log(restObj);//{name: 'chetan', tech: 'React', email: 'che23@gmail.com'}
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                function addAnyNo(...nums) {
+                                    let sum = 0;
+                                    for (let index = 0; index < nums.length; index++) {
+                                        sum = sum + nums[index];
+                                    }
+                                    return sum;
+                                }
+                                console.log(addAnyNo(2, 4, 5))
+                                console.log(addAnyNo(1, 3, 6, 7, 8, 9))
+
+                                function printDetails(firstParam, ...restParam) {
+                                    console.log(firstParam)//AAA'
+                                    console.log(restParam)//['BBB','CCC','DDD']
+                                }
+                                printDetails('AAA', 'BBB', 'CCC', 'DDD')
+
+                                const [firstState, ...restState] = ['MAHA', 'Goa', 'Punjab', 'Gujrat']
+
+                                console.log(firstState);//MAHA
+                                console.log(restState)//['Goa', 'Punjab', 'Gujrat']
+
+                                const { empId, ...restObj } = { name: 'chetan', empId: 'ER-223', tech: 'React', email: 'che23@gmail.com' };
+                                console.log(empId);//ER-223
+                                console.log(restObj);//{name: 'chetan', tech: 'React', email: 'che23@gmail.com'}
+                            </script>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary">
+                                Object Destructuring
+                            </div>
+                            <div class="card-body">
+                                <p>Object destructuring is a shorthand syntax in JavaScript to extract properties from
+                                    objects into variables.</p>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <p>variable name should be same as key name then only you will be able to
+                                            extract value</p>
+                                        <pre>var product = {pName: 'Laptop', price:55000};
+var {pName,price} =  product;
+console.log(pName)//Laptop
+console.log(price)//55000
+                                    </pre>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <p>If you need some differenet variable name insted of key name we do like below
+                                            ie: a</p>
+                                        <pre>var product = {pName: 'Laptop', price:55000};
+var {pName:prodNAme} = product;
+console.log(prodNAme)//Laptop
+                                    </pre>
+
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <p>Array Destructuring</p>
+                                        <pre>var studentList = ['Chetan','Rahul']
+var [stud1,stud2] = studentList;
+console.log(stud1)//Chetan
+console.log(stud2)//Rahul
+                                    </pre>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>const empList = [
+    {empId:121,name:'QQQQ'},
+    {empId:122,name:'WWWW'}
+];
+const[{empId: employee_id}]= empList;
+console.log(employee_id)//121
+                                    </pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                var product = { pName: 'Laptop', price: 55000 };
+                                var { pName, price } = product;
+                                console.log(pName)//Laptop
+                                console.log(price)//55000
+                                var { pName: prodNAme } = product;
+                                console.log(prodNAme)//Laptop
+                                var studentList = ['Chetan', 'Rahul']
+                                var [stud1, stud2] = studentList;
+                                console.log(stud1)//Chetan
+                                console.log(stud2)//Rahul
+
+                                const empList = [
+                                    { empId: 121, name: 'QQQQ' },
+                                    { empId: 122, name: 'WWWW' }
+                                ];
+                                const [{ empId: employee_id }] = empList;
+                                console.log(employee_id)//121
+                                debugger;
+                            </script>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary">
+                                Generator function
+                            </div>
+                            <div class="card-body">
+                                <p>A generator is a special type of function that can be paused and resumed.</p>
+                                <ul>
+                                    <li>Declared using function* syntax</li>
+                                    <li>use yeild keyword to pause execution</li>
+                                    <li> Returns a special object —with .next() method</li>
+                                    <li>return finishes the generator</li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>function* printNum() {
+    console.log(1)
+    yield 1;
+    console.log(2)
+    yield 2;
+    console.log(3)
+} 
+const genFun =  printNum();
+console.log(genFun.next())//{value: 1, done: false}
+console.log(genFun.next())//{value: 2, done: false}
+console.log(genFun.next())//{value: undefined, done: true}
+                                        </pre>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                        <pre>function* getUniqueId(start=1) {
+    let id = start;
+    while(true){
+        yield  `id-${id++}`
+    }
+}
+const generateUnqId =  getUniqueId(33); 
+
+console.log(generateUnqId.next().value)//id-33
+console.log(generateUnqId.next().value)//id-34
+console.log(generateUnqId.next().value)//id-35
+</pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                function* printNum() {
+                                    console.log(1)
+                                    yield 1;
+                                    console.log(2)
+                                    yield 2;
+                                    console.log(3)
+                                }
+
+                                const generateFun = printNum();
+                                console.log(generateFun.next());//{value: 1, done: false}
+                                console.log(generateFun.next());//{value: 2, done: false}
+                                console.log(generateFun.next());//{value: undefined, done: true}
+
+                                function* getUniqueId(start = 1) {
+                                    let id = start;
+                                    while (true) {
+                                        yield `id-${id++}`
+                                    }
+                                }
+                                const generateUnqId = getUniqueId(33);
+
+                                console.log(generateUnqId.next().value)//id-33
+                                console.log(generateUnqId.next().value)//id-34
+                                console.log(generateUnqId.next().value)//id-35
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-3 col-lg-3 col-sm-12">
+                <input type="hidden" id="categorySelect" value="hoisting">
+                <div id="questionContainer"></div>
+            </div>
+        </div>
+</section>

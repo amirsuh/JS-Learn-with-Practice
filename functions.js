@@ -229,7 +229,7 @@ return newArr;
 }
 console.log(recursive(flattenArr))
 
-debugger
+// debugger
 
 const personi = {
   name: "Alice",
