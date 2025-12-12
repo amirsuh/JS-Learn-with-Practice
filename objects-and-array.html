@@ -1,0 +1,479 @@
+<div class="container">
+    <div class="row">  
+           <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                       Object Methods  / Object Iteration
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Object.keys() =&gt; get array of keys from Object</li>
+                            <li>Object.values() =&gt; get array of value from Object</li>
+                            <li>Object.entries() =&gt; get array of key value pair</li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                <h6>Object.keys()</h6>
+                                <pre>var student = { 
+    name:"Chetan",
+    id:312,
+    city:"Nagpur"
+};
+console.log(Object.keys(student))
+//&nbsp;['name', 'id', 'city']
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                <h6>Object.values()</h6>
+                                <pre>var student = { 
+    name:"Chetan",
+    id:312,
+    city:"Nagpur"
+};
+console.log(Object.values(student))
+//&nbsp;['Chetan', 312, 'Nagpur']
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4 col-sm-6">
+                                <h6>Object.entries()</h6>
+                                <pre>var student = { 
+    name:"Chetan",
+    id:312,
+    city:"Nagpur"
+};
+console.log(Object.entries(student))
+//0 (2) ['name', 'Chetan'] 
+//1 (2) ['id', 312]
+//2 (2) ['city', 'Nagpur']
+                                </pre>
+                            </div>
+                        </div>
+                        <script>
+                            var student = { name:"Chetan",id:312,city:"Nagpur"};
+                            console.log(Object.keys(student));
+
+                            console.log(Object.values(student))
+                            //&nbsp;['Chetan', 312, 'Nagpur']
+
+                            console.log(Object.entries(student))
+                            //0 (2) ['name', 'Chetan'] 
+                            //1 (2) ['id', 312]
+                            //2 (2) ['city', 'Nagpur']
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Object.defineProperty
+                    </div>
+                    <div class="card-body">
+                        <p>You can define meta-properties like: writable,enumerable,configurable</p> 
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                <pre>const empObj = {}
+Object.defineProperty(empObj, 'empId',
+    {
+        value: 123,
+        writable: false,
+        enumerable: false,
+        configurable: true
+    })
+empObj.empId = 23;
+console.log(empObj.empId) //123
+                                                            </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                <pre>const empObj = {}
+Object.defineProperty(empObj, 'empId',
+    {
+        value: 123,
+        writable: true,
+        enumerable: false,
+        configurable: true
+    })
+empObj.empId = 23;
+console.log(empObj.empId) //23
+                                </pre>
+                            </div>
+                        </div>
+                       
+                        <script>
+                            const empObj = {}
+                            Object.defineProperty(empObj, 'empId',
+                                {
+                                    value: 123,
+                                    writable: true,
+                                    enumerable: false,
+                                    configurable: true
+                                })
+                             
+                            debugger;
+                            empObj.empId = 23;
+                            console.log(empObj.empId) //23
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Getters and Setters
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>
+                                You can use this to define dynamic properties or encapsulate logic
+                            </li>
+                            <li> this is like new Field we have created and to read we ise get method and to update we use set method</li>
+                            <li>but if you want to update you need set method too</li>
+                        </ul>
+                         <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                <pre>const employee = {
+    name : "Chetan",
+    empId: 231,
+    code:"ER",
+    get emp_id () {
+        return `${this.code}-${this.empId}`
+    },
+    set emp_id(param) {
+       [this.code ,this.empId] = param.split(" ")
+    }
+}
+
+console.log(employee.emp_id)//ER-231
+employee.emp_id = "ER 432";
+console.log(employee.emp_id)//ER-432
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                               <pre>const product = {
+    basePrice: 100,
+    taxRate: 0.18,
+    get finalPrice() {
+        return this.basePrice + (this.basePrice * this.taxRate);
+    },
+    set finalPrice(newPriceWithTax) {
+        this.basePrice = newPriceWithTax / (1 + this.taxRate);
+    }
+};
+console.log(product.finalPrice); // 118
+product.finalPrice = 236;
+console.log(product.basePrice); // 200
+                               </pre>
+                            </div>
+                         </div>
+                        <script>
+
+                            const employee = {
+                                name: "Chetan",
+                                empId: 231,
+                                code: "ER",
+                                get emp_id() {
+                                    return `${this.code}-${this.empId}`
+                                },
+                                set emp_id(param) {
+                                    [this.code, this.empId] = param.split(" ")
+                                }
+                            }
+
+                            console.log(employee.emp_id)//ER-231
+                            employee.emp_id = "ER 432";
+                            console.log(employee.emp_id)//ER-432
+
+                            const product = {
+                                basePrice: 100,
+                                taxRate: 0.18, // 18% GST
+
+                                get finalPrice() {
+                                    return this.basePrice + (this.basePrice * this.taxRate);
+                                },
+
+                                set finalPrice(newPriceWithTax) {
+                                    this.basePrice = newPriceWithTax / (1 + this.taxRate);
+                                }
+                            };
+
+                            console.log(product.finalPrice); // 118
+
+                            product.finalPrice = 236;
+                            console.log(product.basePrice); // 200
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Object.create
+                    </div>
+                    <div class="card-body">
+                         <ul>
+                            <li>When you want prototype-based inheritance without class.</li>
+                            <li>For creating lightweight objects that share behavior.</li>
+                         </ul>
+                         <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                <pre>const player = {
+    name:"sachin",
+    plays:"Cricket"
+};
+
+const player2 = Object.create(player);
+
+console.log(player2.name);//sachin
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                               <pre>const baseForm = {
+    isValid: false,
+    validate() {
+        debugger;
+        console.log("Validating form...");
+    }
+};
+
+const loginForm = Object.create(baseForm);
+loginForm.fields = ["email", "password"];
+loginForm.submit = function () {
+    this.validate();
+    console.log("Submitting login form...");
+};
+
+loginForm.submit();
+                               </pre>
+                            </div>
+                         </div>
+                        <script>
+
+                            const player = {
+                                name: "sachin",
+                                plays: "Cricket"
+                            };
+
+                            const player2 = Object.create(player);
+
+                            console.log(player2.name);
+
+                            const baseForm = {
+                                isValid: false,
+                                validate() {
+                                    debugger;
+                                    console.log("Validating form...");
+                                }
+                            };
+
+                            const loginForm = Object.create(baseForm);
+                            loginForm.fields = ["email", "password"];
+                            loginForm.submit = function () {
+                                this.validate();
+                                console.log("Submitting login form...");
+                            };
+
+                            loginForm.submit();
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Object.freeze, Object.seal, Object.preventExtensions
+                    </div>
+                    <div class="card-body">
+                         <ul>
+                            <li>When you want prototype-based inheritance without class.</li>
+                            <li>For creating lightweight objects that share behavior.</li>
+                         </ul>
+                         <div class="row">
+                            <div class="col-12 col-md-7 col-lg-7 col-sm-6">
+                                <h6>freeze</h6>
+                                <pre>const employeeData = {
+ name: "chetan"
+}
+Object.freeze(employeeData);
+
+employeeData.name = "Rahul" 
+console.log(employeeData)//{name: 'chetan'}
+delete employeeData.name;
+console.log(employeeData)//{name: 'chetan'}
+employeeData.city = "Pune";
+console.log(employeeData)//{name: 'chetan'}
+
+Object.defineProperty(employeeData,'email',{
+ configurable:false,
+ value:"chetan@gmail.com",
+ writable: true
+})//Cannot define property email
+
+console.log(employeeData)//{name: 'chetan'}
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-5 col-sm-6">
+                                <h6>seal</h6>
+                               <pre>const studentData = {
+ name: "Ankit"
+}
+
+Object.seal(studentData)
+
+studentData.name = "Rahul"
+console.log(studentData.name)//Rahul
+studentData.city = "Pune"
+console.log(studentData)//{name: 'Rahul'}
+delete studentData.name;
+console.log(studentData)//{name: 'Rahul'}
+                               </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+                                <pre>const productData = {
+ name: "Mobile",
+ price: 1200
+};
+Object.preventExtensions(productData)
+productData.name = "Camera";
+console.log(productData)//{name: 'Camera',price:1200}
+delete productData.price;
+console.log(productData)//{name: 'Camera'}
+productData.discount = 14500;
+console.log(productData)//{name: 'Camera'} 
+                                </pre>
+                            </div>
+                         </div>
+                        <script>
+
+                           const employeeData = {
+                            name: "chetan"
+                           } 
+
+                           Object.freeze(employeeData);
+                           employeeData.name = "Rahul" 
+                           console.log(employeeData)//{name: 'chetan'}
+                           delete employeeData.name;
+                           console.log(employeeData)//{name: 'chetan'}
+                           employeeData.city = "Pune";
+                           console.log(employeeData)//{name: 'chetan'}
+                        //    Object.defineProperty(employeeData,'email',{
+                        //     configurable:false,
+                        //     value:"chetan@gmail.com",
+                        //     writable: true
+                        //    })//Cannot define property email
+                           console.log(employeeData)//{name: 'chetan'}
+
+                           const studentData = {
+                            name: "Ankit"
+                           }
+                           Object.seal(studentData)
+                           studentData.name = "Rahul"
+                           console.log(studentData.name)//Rahul
+                           studentData.city = "Pune"
+                           console.log(studentData)//{name: 'Rahul'}
+                           delete studentData.name;
+                           console.log(studentData)//{name: 'Rahul'}
+
+                           const productData = {
+                            name: "Mobile",
+                            price: 1200
+                           };
+                           Object.preventExtensions(productData)
+                           productData.name = "Camera";
+                           console.log(productData)//{name: 'Camera',price:1200}
+                           delete productData.price;
+                           console.log(productData)//{name: 'Camera'}
+                           productData.discount = 14500;
+                           console.log(productData)//{name: 'Camera'}  
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Object.freeze, Object.seal, Object.preventExtensions
+                    </div>
+                    <div class="card-body">
+                         <ul>
+                            <li>When you want prototype-based inheritance without class.</li>
+                            <li>For creating lightweight objects that share behavior.</li>
+                         </ul>
+                         <div class="row">
+                            <div class="col-12">
+                                <table class="table table-bordered">
+                                    <tbody><tr>
+                                      <th>Feature</th>
+                                      <th>Object.freeze()</th>
+                                      <th>Object.seal()</th>
+                                      <th>Object.preventExtensions()</th>
+                                    </tr>
+                                    <tr>
+                                      <td>Add New Properties</td>
+                                      <td class="no">No</td>
+                                      <td class="no">No</td>
+                                      <td class="no">No</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Delete Existing Properties</td>
+                                      <td class="no">No</td>
+                                      <td class="no">No</td>
+                                      <td class="yes">Yes</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Modify Existing Properties</td>
+                                      <td class="no">No</td>
+                                      <td class="yes">Yes</td>
+                                      <td class="yes">Yes</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Make Properties Non-configurable</td>
+                                      <td class="yes">Yes</td>
+                                      <td class="yes">Yes</td>
+                                      <td class="no">No</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Make Properties Read-only</td>
+                                      <td class="yes">Yes</td>
+                                      <td class="no">No</td>
+                                      <td class="no">No</td>
+                                    </tr>
+                                  </tbody></table>
+                            </div>
+                         </div>
+                        
+                        <script>
+                            const courseData = {
+                                name:"Angular",
+                                cost:12000,
+                                duration: {
+                                    month:3,
+                                    time:'7 am-9am'
+                                }
+                            }; 
+                            const courseData2 =  Object.create(courseData);
+
+                            const course3 =  Object.assign({},courseData);
+                            const strObj =  JSON.stringify(courseData);
+                            const courseData3 =  JSON.parse(strObj) ;
+
+                            const deepClone =  structuredClone(courseData);
+
+                            courseData2.name = "React";
+                            courseData2.duration.month = 5;
+                            debugger;
+                            console.log(courseData.name);
+                            console.log(courseData.duration.month);
+
+                            courseData3.duration.time = "10pm-11pm";
+                            console.log(courseData.duration.time);
+                            deepClone.duration.time = "5PM -7PM";
+                            console.log(courseData.duration.time);
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,671 @@
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Fibonacci Series
+                    </div>
+                    <div class="card-body">
+                        <pre>let n1 =0, n2 =1; 
+for(let index= 0 ;index &lt;10;index++) {
+    let temp  =0;
+    console.log(n1); 
+    temp  = n1+ n2;
+    n1 = n2;
+    n2 = temp
+} 
+                        </pre>
+                        <script>
+                            let n1 =0, n2 =1; 
+                            for(let index= 0 ;index <10;index++) {
+                                let temp  =0;
+                                console.log(n1); 
+                                temp  = n1+ n2;
+                                n1 = n2;
+                                n2 = temp
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Remove Duplicates From Array
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-8 col-sm-12 col-lg-8">
+                                using filter
+                                <pre>const arr = [1, 2, 3, 2, 4, 1];
+const newArr = arr.filter((item,index) =&gt; arr.indexOf(item) === index);
+console.log(newArr)
+                                </pre>
+                                
+                            </div>
+                            <div class="col-12 col-md-4 col-sm-12 col-lg-4">
+                            using Set
+                            <pre>const arr = [1, 2, 3, 2, 4, 1];
+const unique = [...new Set(arr)];
+console.log(unique);
+                            </pre>
+                            </div>
+                             <div class="col-12 col-md-6 col-sm-12 col-lg-6">
+                            without using 2nd Array Remove duplicate from original array
+                            <pre>const arr = [1, 2, 3, 2, 4, 1, 3, 6, 7, 8, 6];
+for (let i = 0; i &lt;= arr.length; i++) {
+    for (let j = i + 1; j &lt; arr.length; j++) {
+        if (arr[i] == arr[j]) {
+            arr.splice(j, 1)
+        }
+    }
+};
+console.log(arr)
+//[1, 2, 3, 4, 6, 7, 8]
+                            </pre>
+                            </div>
+                              <div class="col-12 col-md-6 col-sm-12 col-lg-6">
+                             get array of element which are not repeated
+                            <pre>const arr = [1, 2, 3, 2, 4, 1, 3, 6, 7, 8, 6];
+       
+const newArr =  arr.filter((item)=&gt; 
+arr.indexOf(item) == arr.lastIndexOf(item))
+
+console.log(newArr)
+                            </pre>
+                            <pre>const arr = [1, 2, 3, 2, 4, 1, 3, 6, 7, 8, 6];
+const eleCountObj = {};
+arr.forEach(element =&gt; {
+    eleCountObj[element] = (eleCountObj[element] || 0) + 1
+});
+const newArray = arr.filter(item =&gt; eleCountObj[item] == 1)
+console.log(newArray)
+                            </pre>
+                            </div>
+                             <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                              remove Duplicate from array of Object
+                            <pre>var list = [
+    {name:'chetan', id:111, city: 'Mumbai'},
+    {name:'Rahul', id:112, city: 'pune'},
+    {name:'chetan', id:113, city: 'Mumbai'},
+    {name:'Aniket', id:114, city: 'Nagpur'}
+ ];
+var newArr =  list.filter((item, index) =&gt; list.findIndex(m=&gt;m.name == item.name) == index);
+or
+var newArr =  list.filter((item, index) =&gt; {
+    return list.findIndex(m=&gt;m.name == item.name) == index
+})
+
+console.log(newArr)
+                            </pre>
+                           
+                            </div>
+                            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                              remove Duplicate from array of Object with more than 2 fields
+                            <pre>var list = [
+    { name: 'chetan', id: 111, city: 'Mumbai' },
+    { name: 'Rahul', id: 112, city: 'pune' },
+    { name: 'chetan', id: 113, city: 'Mumbai' },
+    { name: 'Aniket', id: 114, city: 'Nagpur' }
+];
+
+var uniqueFields = ['name', 'city'];
+
+const newArr = list.filter((item, index, self) =&gt; {
+    return index === self.findIndex(otherItem =&gt; {
+        return uniqueFields.every(field =&gt; item[field] === otherItem[field]);
+    });
+});
+
+console.log(newArr);
+                            </pre>
+                           
+                            </div>
+                        </div> 
+                        <script>
+                            const arr = [1, 2, 3, 2, 4, 1, 3, 6, 7, 8, 6];
+                            for (let i = 0; i <= arr.length; i++) {
+                                for (let j = i + 1; j < arr.length; j++) {
+                                    if (arr[i] == arr[j]) {
+                                        arr.splice(j, 1)
+                                    }
+                                }
+                            };
+                            console.log(arr)
+
+                            const newArr = arr.filter((item, index) => arr.indexOf(item) === index);
+                            console.log(newArr);
+
+
+                            const newUniq = [...new Set(arr)]
+                            console.log(newUniq)
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Get count of duplicate elements with their count
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12">
+                                <pre>const arr1 = [1, 2, 3, 2, 4, 1]; 
+const obj = {}; 
+for (let index = 0; index &lt; arr1.length; index++) { 
+    obj[arr1[index]] =   ((obj[arr1[index]])||0) + 1; 
+}
+console.log(obj) 
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12">
+                                <pre>const arr1 = [1, 2, 3, 2, 4, 1]; 
+const obj = {};  
+arr1.forEach(element=&gt;{
+    obj[element] =  (obj[element] ||0) +1
+})
+console.log(obj) 
+                                </pre>
+                            </div>
+                        </div>
+                        
+                        <script>
+                            const arr1 = [1, 2, 3, 2, 4, 1]; 
+                            const obj = {}; 
+                            for (let index = 0; index < arr1.length; index++) { 
+                                obj[arr1[index]] =   ((obj[arr1[index]])||0) + 1; 
+                            }
+                            arr1.forEach(element=>{
+                                obj[element] =  (obj[element] ||0) +1
+                            })
+                            console.log(obj)
+
+                        </script>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12">
+                                <h6>get large no from array</h6>
+                                <pre>const noList = [1,3,5,11,4,2,5];
+//const noList = [-3,-5,-11,-4,-2,-1,-5];
+let largeNo = noList[0];
+for(let i= 0;i&lt;= noList.length;i++) {
+    if(largeNo &lt; noList[i]) {
+        largeNo = noList[i]
+    }
+}
+console.log(largeNo)</pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12">
+                                 <h6>given array of num , remove 0 and convert +ve to -ve</h6>
+                                <pre>const noList = [1,3,5,0,11,4,,0,2,5];
+         
+const newone = noList.filter(m=&gt;m!= 0).map(num=&gt; - num)
+        
+console.log(newone) 
+                                </pre>
+                            </div>
+                        </div>
+                        
+                        <script>
+                            const noList = [1,3,5,11,4,2,5];
+        //const noList = [-3,-5,-11,-4,-2,-1,-5];
+        let largeNo = noList[0];
+        for(let i= 0;i<= noList.length;i++) {
+            if(largeNo < noList[i]) {
+                largeNo = noList[i]
+            }
+        }
+        console.log(largeNo)
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        check if string is palindrone
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <pre> 
+ const originalStr = "naman";
+ const strArra =  originalStr.split("");
+ const revArr =  strArra.reverse();
+ const reveStr = revArr.join("")
+ console.log(reveStr)
+                                </pre>
+                                
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                            <pre> 
+const newStr = originalStr.split("").reverse().join("");
+console.log(newStr)
+                            </pre>
+                            </div>
+                        </div> 
+                        <script>
+                            const originalStr = "naman";
+                            const strArra =  originalStr.split("");
+                            const revArr =  strArra.reverse();
+                            const reveStr = revArr.join("")
+                            console.log(reveStr)
+                            const newStr = originalStr.split("").reverse().join("");
+                            console.log(newStr)
+                           
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Find the First Non-Repeating Character
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12">
+                                <pre>const str = "aabccdb";
+const dupliCountObj = {}; 
+str.split("").forEach(element =&gt; {
+    dupliCountObj[element] = (dupliCountObj[element] || 0) + 1
+})
+let firstEle = "";
+Object.keys(dupliCountObj).forEach(ele =&gt; {
+    if (dupliCountObj[ele] == 1 &amp;&amp; firstEle == '') {
+        firstEle = ele
+    }
+})
+console.log(firstEle)
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12">
+                                <pre>const str = "aabccdb";
+const dupliCountObj = {}; 
+str.split("").forEach(element =&gt; {
+    dupliCountObj[element] = (dupliCountObj[element] || 0) + 1
+})
+let firstEle = "";
+
+for(let char of str) {
+    debugger;
+    if(dupliCountObj[char] == 1) {
+        firstEle = char;
+        break;
+    } 
+}
+console.log(firstEle)
+                                </pre>
+                            </div>
+                        </div>
+                        <script>
+                            const str = "aabccdb";
+                            const dupliCountObj = {}; 
+                            str.split("").forEach(element => {
+                                dupliCountObj[element] = (dupliCountObj[element] || 0) + 1
+                            })
+                            let firstEle = "";
+                            // Object.keys(dupliCountObj).forEach(ele => {
+                            //     if (dupliCountObj[ele] == 1 && firstEle == '') {
+                            //         firstEle = ele
+                            //     }
+                            // })
+                            for(let char of str) {
+                                debugger;
+                                if(dupliCountObj[char] == 1) {
+                                    firstEle = char;
+                                    break;
+                                } 
+                            }
+                            console.log(firstEle)
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        check if two strings are permutations means contains same no of charactors
+                    </div>
+                    <div class="card-body">
+                        <pre>var firstWord = "listen";
+var secondWord =  "silent";
+var firststrArr =  firstWord.split("").sort().join();
+var secodnStrArru =  secondWord.split("").sort().join();
+console.log(firststrArr === secodnStrArru)
+                        </pre>
+                        <script>
+                            var firstWord = "listen";
+                            var secondWord =  "silent";
+
+                            var firststrArr =  firstWord.split("").sort().join();
+                            var secodnStrArru =  secondWord.split("").sort().join();
+
+                            console.log(firststrArr === secodnStrArru)
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Factorial of a Number
+                    </div>
+                    <div class="card-body">
+                        <pre>function getFact(num) {
+    let result =1;
+    debugger
+    for(var index=2;index&lt;=num;index++) {
+        result = result * index
+    }
+    return result
+}
+console.log(getFact(5))
+                        </pre>
+                        <script>
+                            function getFact(num) {
+                                let result =1;
+                                debugger
+                                for(var index=2;index<=num;index++) {
+                                    result = result * index
+                                }
+                                return result
+                            }
+
+                            console.log(getFact(5))
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        Longest Word in a String
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12">
+                                to get single large word
+                                <pre>var originalString = "The quick brown fox jumped";
+var strArr = originalString.split(" ");
+var longestWord = "";
+
+for(let word of strArr) {
+   if(word.length &gt; longestWord.length ) {
+       longestWord = word
+   }
+} 
+console.log(longestWord)
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12">
+                                to get multple large word
+                                <pre> 
+let originalString = "The quick brown fox jumped and jumped";
+let strArr = originalString.split(" ");
+let longestWordLength = 0;
+let longedsWordArray = [];
+ for(let word of strArr) {
+    if(word.length &gt; longestWordLength) {
+        longestWord = word.length;
+        longedsWordArray =[word]
+    } else if (word.length == longestWordLength) {
+        longedsWordArray.push(word)
+    }
+ } 
+ console.log(longedsWordArray)
+                                </pre>
+                            </div>
+                        </div>
+                        <pre> 
+                        </pre>
+                        <script>
+                            // var originalString = "The quick brown fox jumped over the lazy dog and jumped";
+
+                            //  var strArr = originalString.split(" ");
+                            //  var longestWord = "";
+
+                            //  for(let word of strArr) {
+                            //     if(word.length > longestWord.length ) {
+                            //         longestWord = word
+                            //     }
+                            //  } 
+                            // console.log(longestWord)
+                        </script>
+                         <script>
+                            let originalString = "The quick brown fox jumped over the lazy dog and jumped";
+
+                            let strArr = originalString.split(" ");
+                            let longestWordLength = 0;
+                            let longedsWordArray = [];
+
+                             for(let word of strArr) {
+                                if(word.length > longestWordLength) {
+                                    longestWord = word.length;
+                                    longedsWordArray =[word]
+                                } else if (word.length == longestWordLength) {
+                                    longedsWordArray.push(word)
+                                }
+                             } 
+                            console.log(longedsWordArray)
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        find Missing Number from array
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12"> 
+                                <pre> 
+function findMissingNumber(arr) {
+    const n = arr.length + 1;
+    let missingElements = []; 
+    for (let i = 1; i &lt;= n; i++) {
+        if (!arr.includes(i)) {
+            missingElements.push(i)
+        };
+    }
+    return missingElements;
+}
+console.log(findMissingNumber([1, 2, 4, 5, 7]))
+                                </pre>
+                            </div> 
+                        </div>
+                      
+                        <script>
+                            function findMissingNumber(arr) {
+                                const n = arr.length + 1;
+                                let missingElements = []; 
+                                for (let i = 1; i <= n; i++) {
+                                    if (!arr.includes(i)) {
+                                        missingElements.push(i)
+                                    };
+                                }
+                                return missingElements;
+                            }
+                            console.log(findMissingNumber([1, 2, 4, 5, 7]))
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        find Missing Number from array
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <pre> 
+let group = [{ name: 'a', children: [{ name: 'b', children: [{ name: 'c' }] }] }];
+//O/p: a b c 
+var valueArray = [];
+getValues(group)
+function getValues(value) {
+  if (typeof value == 'string') {
+    valueArray.push(value)
+  } else if (Array.isArray(value)) {
+    value.forEach(element =&gt; {
+      getValues(element)
+    });
+  } else if (typeof value == 'object') {
+    const values = Object.values(value)
+    getValues(values)
+  }
+}
+console.log(valueArray)
+                                </pre>
+                            </div> 
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <pre> 
+let obj = { a: 10, b: 10, c: 30, d: 40 };
+//{
+// 10: ['a', 'b'],
+// 30: ['c'],
+// 40: ['d']
+// }
+const values = Object.values(obj);
+  const keys = Object.keys(obj)
+  const newObj = {};
+  values.forEach(value =&gt; {
+    keys.forEach(key =&gt; {
+      if (obj[key] == value) {
+        if (newObj[value] == undefined) {
+          newObj[value] = [key]
+        } else {
+          const isKeyExist = newObj[value].find(m =&gt; m == key);
+          if (isKeyExist == undefined) {
+            newObj[value].push(key)
+          }
+        }
+      }
+    })
+  });
+console.log(newObj)
+                                </pre>
+                            </div> 
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <pre> 
+let arr = [1, 3, 2, 4, 5];
+const sum = arr.reduce((acc, cVal) =&gt; acc + cVal, 0)
+console.log(sum);
+
+const productList = [
+  { name: '', quantity: 3 },
+  { name: '', quantity: 3 },
+  { name: '', quantity: 3 },
+  { name: '', quantity: 3 },
+];
+const sum2 = productList.reduce((acc, item) =&gt; acc + item.quantity, 0)
+console.log(sum2);
+                                </pre>
+                            </div>
+                        </div>
+                      
+                        <script>
+                            let group = [{ name: 'a', children: [{ name: 'b', children: [{ name: 'c' }] }] }];
+                            //O/p: a b c 
+                            var valueArray = [];
+                            getValues(group)
+                            function getValues(value) {
+                                if (typeof value == 'string') {
+                                    valueArray.push(value)
+                                } else if (Array.isArray(value)) {
+                                    value.forEach(element => {
+                                        getValues(element)
+                                    });
+                                } else if (typeof value == 'object') {
+                                    const values = Object.values(value)
+                                    getValues(values)
+                                }
+                            }
+                            console.log(valueArray)
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                       Object Map , nested array
+                    </div>
+                    <div class="card-body">
+                        <div class="row"> 
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <pre> 
+const people = [
+    { name: 'john', skills: ['js', 'c#', 'html'] },
+    { name: 'doe', skills: ['js'] },
+    { name: 'dennis', skills: ['js', 'c++', 'html'] }
+];
+Output Shoud be
+{
+  js: [ 'john', 'doe', 'dennis' ],
+  'c#': [ 'john' ],
+  html: [ 'john', 'dennis' ],
+  'c++': [ 'dennis' ]
+}
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <pre> 
+ const newObj = {};
+ for (const person of people) {
+     for (const skill of person.skills) {
+         if (!newObj[skill]) {
+             newObj[skill] = [];
+         }
+         newObj[skill].push(person.name)
+     }
+ }
+ console.log(newObj)
+                                </pre>
+                            </div>
+                             <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <pre> 
+const valueList  = [];
+
+people.forEach(item =&gt;{
+   item.skills.forEach((skill)=&gt; {
+       const isSkillPresent =  valueList.find(m=&gt;m ==skill);
+       if(isSkillPresent == undefined) {
+           valueList.push(skill)
+       }
+   })
+})
+const newObj = {};
+valueList.forEach(value=&gt;{
+    const peopleWithSkill =  people.filter(m=&gt;m.skills.includes(value));
+if(peopleWithSkill.length != 0) {
+    if(!newObj[value]) {
+        newObj[value] = peopleWithSkill.map(item=&gt; item.name)
+    }
+}   
+})
+console.log(valueList)
+console.log(newObj)
+                                </pre>
+                            </div>
+                        </div>
+                      
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
