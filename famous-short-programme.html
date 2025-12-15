@@ -666,6 +666,92 @@ console.log(newObj)
                     </div>
                 </div>
             </div>
+
+
+             <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                       Capitalize first letter (Altimetrik Only JS for johnson)
+                    </div>
+                    <div class="card-body">
+                        <div class="row"> 
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <pre> 
+function titleCase(str) { 
+  let spil = str.split(' ');
+  let finalStr = [];
+
+  for (let word of spil) {
+    finalStr.push(word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+  }
+
+  return finalStr.join(' ');
+}
+  console.log(titleCase('I am coming to office tomorrow!'));
+                                </pre>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <p>short hand</p>
+                                <pre> 
+const titleCase = str =>
+  str.toLowerCase()
+     .split(' ')
+     .map(w => w[0].toUpperCase() + w.slice(1))
+     .join(' ');
+
+console.log(titleCase('I am coming to office tomorrow!'))
+                                </pre>
+                            </div>
+                             <div class="col-12 col-md-6 col-lg-6 col-sm-12"> 
+                                <p>PUBSUB Pattern</p>
+                                <pre> 
+function PubSub() {
+  this.subscriptions = {};  // Store subscribers by type
+
+  // Subscribe to a type with a callback
+  this.subscribe = (type, call) => {
+    // If no subscribers for this type, initialize an array
+    if (!this.subscriptions[type]) {
+      this.subscriptions[type] = [];
+    }
+    // Add the callback to the list of subscribers for the type
+    this.subscriptions[type].push(call);
+  };
+
+  // Notify all subscribers of a given type with data
+  this.notify = (type, data) => {
+    // If there are subscribers for this type, notify them
+    if (this.subscriptions[type]) {
+      this.subscriptions[type].forEach(call => {
+        call(data);  // Call the subscriber with the data
+      });
+    }
+  };
+}
+
+let pubsub = new PubSub();
+
+pubsub.subscribe('ping', (data) => {
+  console.log('I have received a ping message', data);
+});
+
+pubsub.subscribe('pong', (data) => {
+  console.log('I have received a pong message', data);
+});
+
+pubsub.notify('ping', { data: 123 }); // Triggers the 'ping' subscriber
+pubsub.notify('pong', { data: 456 }); // Triggers the 'pong' subscriber
+
+                                </pre>
+                            </div>
+                        </div>
+                      
+                     
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
     </div>
