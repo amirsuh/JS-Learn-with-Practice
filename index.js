@@ -72,3 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('iconSun').style.display = isDark ? 'none' : 'block';
   document.getElementById('iconMoon').style.display = isDark ? 'block' : 'none';
 });
+$('#headingOne button').on('click', function() {
+    var icon = $(this).find('i');
+    if (icon.hasClass('fa-chevron-down')) {
+        icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+    } else {
+        icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+    }
+});

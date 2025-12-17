@@ -1,0 +1,249 @@
+<style>
+  .toggle-header {
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+
+  .toggle-header::after {
+    content: "▼";
+    float: right;
+    transition: transform 0.3s ease;
+  }
+
+  .toggle-header.collapsed::after {
+    transform: rotate(-90deg);
+  }
+</style>
+<div class="container mt-4">
+
+
+
+    
+   <!-- Toggle 1 -->
+  <div class="toggle-header fw-bold collapsed"
+       data-bs-toggle="collapse"
+       data-bs-target="#section1">
+    Execution Context & Scope
+  </div>
+  <div id="section1" class="collapse mb-3">
+    <div class="card card-body">
+      Understanding how JavaScript executes code is crucial. This includes
+      execution contexts and scope chains.
+    </div>
+  </div>
+
+  <div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#hoisting">
+  Hoisting
+</div>
+<div id="hoisting" class="collapse">
+  <div class="card card-body">
+    Variables declared with <code>var</code> and function declarations are hoisted to the top of their scope.
+    <code>let</code> and <code>const</code> are in a temporal dead zone until declared.
+    This affects how you structure Angular services and components.
+  </div>
+</div>
+
+<!-- Closures -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#closures">
+  Closures
+</div>
+<div id="closures" class="collapse">
+  <div class="card card-body">
+    A closure gives access to an outer function’s scope from an inner function.
+    In Angular, closures appear in event handlers, callbacks, and RxJS operators.
+    Understanding them helps avoid memory leaks and manage state.
+  </div>
+</div>
+
+<!-- this Keyword & Binding -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#thisBinding">
+  this Keyword & Binding
+</div>
+<div id="thisBinding" class="collapse">
+  <div class="card card-body">
+    The value of <code>this</code> depends on how a function is called.
+    This includes regular calls, method calls, arrow functions, and explicit binding
+    using <code>call</code>, <code>apply</code>, and <code>bind</code>.
+    Critical for Angular components and event handlers.
+  </div>
+</div>
+
+<!-- Arrow vs Regular Functions -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#arrowFunctions">
+  Arrow Functions vs Regular Functions
+</div>
+<div id="arrowFunctions" class="collapse">
+  <div class="card card-body">
+    Arrow functions do not have their own <code>this</code>, <code>arguments</code>, or <code>super</code>.
+    They lexically bind <code>this</code>, making them ideal for Angular templates and RxJS pipelines.
+  </div>
+</div>
+
+<!-- Higher Order Functions -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#hof">
+  Higher-Order Functions
+</div>
+<div id="hof" class="collapse">
+  <div class="card card-body">
+    Functions that take other functions as arguments or return functions.
+    Methods like <code>map</code>, <code>filter</code>, <code>reduce</code>, and <code>forEach</code>
+    are essential for Angular data transformations.
+  </div>
+</div>
+
+<!-- Promises -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#promises">
+  Promises
+</div>
+<div id="promises" class="collapse">
+  <div class="card card-body">
+    Promises have states: pending, fulfilled, and rejected.
+    Understanding chaining, error handling, and utilities like
+    <code>Promise.all</code> and <code>Promise.race</code> is important,
+    even though Angular primarily uses Observables.
+  </div>
+</div>
+
+<!-- Async Await -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#asyncAwait">
+  Async / Await
+</div>
+<div id="asyncAwait" class="collapse">
+  <div class="card card-body">
+    Async/await is syntactic sugar over Promises that makes async code easier to read.
+    It is essential for clean Angular service and component logic.
+  </div>
+</div>
+
+<!-- Event Loop -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#eventLoop">
+  Event Loop & Call Stack
+</div>
+<div id="eventLoop" class="collapse">
+  <div class="card card-body">
+    Understanding the call stack, microtask queue, and macrotask queue
+    explains execution order and helps debug timing issues in Angular.
+  </div>
+</div>
+
+<!-- Prototypal Inheritance -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#prototypes">
+  Prototypal Inheritance
+</div>
+<div id="prototypes" class="collapse">
+  <div class="card card-body">
+    JavaScript uses prototype-based inheritance.
+    Knowing how <code>__proto__</code> and <code>prototype</code> work
+    helps debug complex Angular behavior.
+  </div>
+</div>
+
+<!-- ES6 Classes -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#classes">
+  ES6 Classes
+</div>
+<div id="classes" class="collapse">
+  <div class="card card-body">
+    Classes are syntactic sugar over prototypes.
+    Angular components and services rely on constructors,
+    inheritance with <code>extends</code>, and <code>super</code>.
+  </div>
+</div>
+
+<!-- Destructuring -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#destructuring">
+  Destructuring
+</div>
+<div id="destructuring" class="collapse">
+  <div class="card card-body">
+    Destructuring extracts values from arrays and objects.
+    Commonly used in Angular for route params, inputs, and HTTP responses.
+  </div>
+</div>
+
+<!-- Immutability -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#immutability">
+  Immutability
+</div>
+<div id="immutability" class="collapse">
+  <div class="card card-body">
+    Avoiding direct mutation improves performance and predictability.
+    Essential for Angular change detection and NgRx state management.
+  </div>
+</div>
+
+<!-- Memory Management -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#memory">
+  Memory Management
+</div>
+<div id="memory" class="collapse">
+  <div class="card card-body">
+    Understanding garbage collection, memory leaks, and subscription cleanup
+    is crucial for building production-ready Angular applications.
+  </div>
+</div>
+
+<!-- TypeScript & Angular -->
+<div class="toggle-header fw-bold collapsed"
+     data-bs-toggle="collapse"
+     data-bs-target="#typescript">
+  TypeScript & Angular
+</div>
+<div id="typescript" class="collapse">
+  <div class="card card-body">
+    TypeScript concepts like generics, interfaces, decorators, and utility types
+    are foundational to Angular development and compile down to JavaScript.
+  </div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+    // Select the toggle button
+    const toggleButton = document.querySelector('#headingOne button');
+    const collapseElement = document.getElementById('collapseOne');
+    
+    collapseElement.addEventListener('shown.bs.collapse', function () {
+        // Change icon to 'up' when collapsed is shown
+        toggleButton.querySelector('i').classList.remove('fa-chevron-down');
+        toggleButton.querySelector('i').classList.add('fa-chevron-up');
+    });
+
+    collapseElement.addEventListener('hidden.bs.collapse', function () {
+        // Change icon to 'down' when collapsed is hidden
+        toggleButton.querySelector('i').classList.remove('fa-chevron-up');
+        toggleButton.querySelector('i').classList.add('fa-chevron-down');
+    });
+</script>
