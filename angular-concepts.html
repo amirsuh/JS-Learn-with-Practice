@@ -1,0 +1,193 @@
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Angular Core Concepts</h1>
+    
+    <!-- Angular Core Overview -->
+    <section class="mb-4">
+      <h2>Angular Core</h2>
+      <p>Angular core provides foundational APIs like <code>@Component</code>, <code>@NgModule</code>, <code>@Injectable</code>, and <code>CommonModule</code> for bootstrapping apps. The root module (<code>AppModule</code>) declares components and imports essential modules. Core handles change detection via <code>Zone.js</code>, tracking async operations automatically.</p>
+      <pre class="bg-light p-3">
+        <code class="language-typescript">
+          import { NgModule } from '@angular/core';
+          
+          @NgModule({
+            declarations: [AppComponent],
+            imports: [BrowserModule],
+            bootstrap: [AppComponent]
+          })
+          export class AppModule { }
+        </code>
+      </pre>
+    </section>
+
+    <!-- Components -->
+    <section class="mb-4">
+      <h2>Components</h2>
+      <p>Components encapsulate template, styles, and logic using <code>@Component</code> decorator with selector, templateUrl, and styleUrls. They implement lifecycle hooks like <code>ngOnInit()</code> for initialization. Components communicate via <code>@Input()</code> for data down and <code>@Output()</code> for events up.</p>
+      <pre class="bg-light p-3">
+        <code class="language-typescript">
+          import { Component } from '@angular/core';
+
+          @Component({
+            selector: 'app-user',
+            template: '&lt;h1&gt;{{name}}&lt;/h1&gt;',
+            styleUrls: ['./user.component.css']
+          })
+          export class UserComponent {
+            @Input() name: string = '';
+          }
+        </code>
+      </pre>
+    </section>
+
+    <!-- Modules -->
+    <section class="mb-4">
+      <h2>Modules</h2>
+      <p>Modules (<code>@NgModule</code>) group related components, directives, and services. Feature modules organize app sections; root module bootstraps the app. Shared modules export reusable elements for multiple features.</p>
+      <pre class="bg-light p-3">
+        <code class="language-typescript">
+          @NgModule({
+            declarations: [UserComponent],
+            imports: [CommonModule],
+            exports: [UserComponent]  // For shared modules
+          })
+          export class UserModule { }
+        </code>
+      </pre>
+    </section>
+
+    <!-- Templates -->
+    <section class="mb-4">
+      <h2>Templates</h2>
+      <p>Templates use HTML with Angular syntax: interpolation <code>{{expression}}</code>, property binding <code>[prop]="value"</code>, event binding <code>(event)="handler()"</code>. Structural directives like <code>*ngIf</code>, <code>*ngFor</code> control rendering. Property binding updates DOM attributes dynamically.</p>
+      <pre class="bg-light p-3">
+        <code class="language-xml">
+          &lt;!-- user.component.html --&gt;
+          &lt;div *ngIf="user"&gt;
+            &lt;p&gt;{{user.name}}&lt;/p&gt;
+            &lt;button (click)="onSave()"&gt;Save&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;input [value]="user.email" /&gt;
+        </code>
+      </pre>
+    </section>
+
+    <!-- Forms -->
+    <section class="mb-4">
+      <h2>Forms</h2>
+      <h3>Template-Driven Forms</h3>
+      <p>Template-driven forms use <code>ngModel</code>, <code>ngForm</code> directives. Two-way binding with <code>[(ngModel)]</code>. Access form via <code>#form="ngForm"</code>. Suitable for simple forms.</p>
+      <pre class="bg-light p-3">
+        <code class="language-xml">
+          &lt;form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)"&gt;
+            &lt;input name="name" ngModel required /&gt;
+            &lt;button [disabled]="!userForm.valid"&gt;Submit&lt;/button&gt;
+          &lt;/form&gt;
+        </code>
+      </pre>
+
+      <h3>Reactive Forms</h3>
+      <p>Reactive forms use <code>FormControl</code>, <code>FormGroup</code>, <code>FormArray</code> from <code>ReactiveFormsModule</code>. Programmatic validation/control. Immutable, testable structure.</p>
+      <pre class="bg-light p-3">
+        <code class="language-typescript">
+          import { FormBuilder, Validators } from '@angular/forms';
+
+          ngOnInit() {
+            this.userForm = this.fb.group({
+              name: ['', [Validators.required, Validators.minLength(3)]]
+            });
+          }
+        </code>
+      </pre>
+      <pre class="bg-light p-3">
+        <code class="language-xml">
+          &lt;form [formGroup]="userForm" (ngSubmit)="onSubmit()"&gt;
+            &lt;input formControlName="name" /&gt;
+            &lt;div *ngIf="userForm.get('name')?.invalid"&gt;Invalid&lt;/div&gt;
+          &lt;/form&gt;
+        </code>
+      </pre>
+    </section>
+
+    <!-- HTTP and Services -->
+    <section class="mb-4">
+      <h2>HTTP and Services</h2>
+      <h3>HttpClient</h3>
+      <p><code>HttpClient</code> (requires <code>HttpClientModule</code>) returns Observables. Supports GET, POST, PUT, DELETE with typing via generics. Configure base URL in interceptors. Use <code>HttpParams</code> for query strings.</p>
+      <pre class="bg-light p-3">
+        <code class="language-typescript">
+          import { HttpClient } from '@angular/common/http';
+
+          constructor(private http: HttpClient) { }
+
+          getUsers() {
+            return this.http.get&lt;User[]&gt;('/api/users');
+          }
+
+          postUser(user: User) {
+            return this.http.post&lt;User&gt;('/api/users', user);
+          }
+        </code>
+      </pre>
+
+      <h3>HTTP Interceptors</h3>
+      <p>Interceptors (<code>@Injectable()</code>) hook into HTTP requests/responses app-wide. Add auth headers, log requests, handle errors. Implement <code>HttpInterceptor</code> interface, provide in <code>HTTP_INTERCEPTORS</code>.</p>
+      <pre class="bg-light p-3">
+        <code class="language-typescript">
+          import { HttpInterceptorFn } from '@angular/common/http';
+
+          export const authInterceptor: HttpInterceptorFn = (req, next) => {
+            const authReq = req.clone({
+              headers: req.headers.set('Authorization', 'Bearer ' + token)
+            });
+            return next(authReq);
+          };
+        </code>
+      </pre>
+    </section>
+
+    <!-- Routing -->
+    <section class="mb-4">
+      <h2>Routing</h2>
+      <p><code>RouterModule.forRoot()</code> configures routes with path, component, children. <code>RouterLink</code> directive for navigation. <code>ActivatedRoute</code> accesses params/query. Guards protect routes.</p>
+      <pre class="bg-light p-3">
+        <code class="language-typescript">
+          // app-routing.module.ts
+          const routes: Routes = [
+            { path: 'users/:id', component: UserDetailComponent },
+            { path: '**', component: NotFoundComponent }
+          ];
+        </code>
+      </pre>
+
+      <h3>Lazy Loading</h3>
+      <p>Load feature modules on-demand with <code>loadChildren</code>. Reduces initial bundle size. Use <code>loadChildren: () =&gt; import('./module').then(m =&gt; m.Module)</code>.</p>
+      <pre class="bg-light p-3">
+        <code class="language-typescript">
+          { path: 'admin', loadChildren: () =&gt; 
+            import('./admin/admin.module').then(m =&gt; m.AdminModule) }
+        </code>
+      </pre>
+    </section>
+
+    <!-- State Management -->
+    <section class="mb-4">
+      <h2>State Management (NgRx)</h2>
+      <p>NgRx implements Redux pattern: Actions → Reducers → Store → Selectors → Effects (async). Store holds immutable state. Effects handle side effects like API calls.</p>
+      <pre class="bg-light p-3">
+        <code class="language-typescript">
+          // action
+          export const loadUsers = createAction('[User] Load');
+
+          // reducer
+          on(loadUsers, (state) => ({ ...state, loading: true }));
+        </code>
+      </pre>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="mt-4">
+      <h2>Conclusion</h2>
+      <p>Angular's architecture supports building scalable, maintainable single-page applications. By mastering core concepts like components, services, routing, HTTP, and state management, you can create powerful and performant apps with Angular.</p>
+    </section>
+
+  </div>
