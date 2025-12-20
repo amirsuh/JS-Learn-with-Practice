@@ -502,17 +502,17 @@ test(function print(){
                         <div class="col-12 col-md-4 col-lg-4 col-sm-6">
                            
                             <script>
-                                 debugger;
+                                 //debugger;
                                 function getApi(callback) {
                                     fetch("https://jsonplaceholder.typicode.com/users")
                                     .then((res)=> res.json())
                                     .then((res)=>{
-                                        debugger;
+                                        //debugger;
                                         callback(res)
                                     })
                                 } 
                                 var printApiResult =  function (data) {
-                                     debugger;
+                                     //debugger;
                                     console.log("API Result"+ data.length )
                                 } 
                                 getApi(printApiResult) 
@@ -532,14 +532,14 @@ getApi(printApiResult)
                         </div>
                         <div class="col-12 col-md-4 col-lg-4 col-sm-6">
                             <script>
-                                debugger;
+                                //debugger;
                                 function getApi() {
                                     return fetch("https://jsonplaceholder.typicode.com/users")
                                         .then((res) => res.json())
                                 }
                                 getApi()
                                     .then((res) => {
-                                        debugger;
+                                        //debugger;
                                         console.log("API Result" + res.length)
                                     })
                             </script>

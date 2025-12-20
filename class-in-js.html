@@ -396,7 +396,7 @@ console.log(person.name); // Output: Bob
                         }
 
                         set _price(value) {
-                            debugger;
+                            //debugger;
                             if (value != undefined && value != null && value != 0) {
                                 this.price = value;
                             }
@@ -404,7 +404,7 @@ console.log(person.name); // Output: Bob
                     }
                     const mobile2 = new ProductPrice("Camred", 1200);
                     mobile2._price = 0;
-                    debugger;
+                    //debugger;
                     console.log(mobile2.getTaxablePrice)
                     console.log(mobile2._price)
                 </script>
@@ -423,7 +423,7 @@ console.log(person.name); // Output: Bob
     }
 
     set _price(value) {
-        debugger;
+        //debugger;
         if(value != undefined &amp;&amp; value != null &amp;&amp; value !=0) {
             this.price = value;
         }
@@ -431,7 +431,7 @@ console.log(person.name); // Output: Bob
 }
 const mobile2 =  new ProductPrice("Camred",1200);
 mobile2._price = 0;
-debugger;
+//debugger;
 console.log( mobile2._price )
                                     </pre>
                         </div>

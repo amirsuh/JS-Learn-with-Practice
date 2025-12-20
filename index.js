@@ -10,17 +10,43 @@ console.log(y);
 
 
 // Function to load content from a selected page
+// function loadPage(page) {
+//   fetch(`${page}.html`) // Try to load the HTML page corresponding to the route
+//     .then(res => {
+//       if (!res.ok) throw new Error('Page not found'); // Handle error if page is not found
+//       return res.text();
+//     })
+//     .then(html => {
+//       document.getElementById('content').innerHTML = html; // Inject the content into the main section
+//     })
+//     .catch(err => {
+//       // Show error message if page loading fails
+//       document.getElementById('content').innerHTML = `
+//         <div class="alert alert-danger mt-4">
+//           <h4>Error</h4>
+//           <p>${err.message}</p>
+//         </div>`;
+//     });
+// }
 function loadPage(page) {
-  fetch(`${page}.html`) // Try to load the HTML page corresponding to the route
+  fetch(`${page}.html`)
     .then(res => {
-      if (!res.ok) throw new Error('Page not found'); // Handle error if page is not found
+      if (!res.ok) throw new Error('Page not found');
       return res.text();
     })
     .then(html => {
-      document.getElementById('content').innerHTML = html; // Inject the content into the main section
+      document.getElementById('content').innerHTML = html;
+
+      const oldScript = document.getElementById('page-script');
+      if (oldScript) oldScript.remove();
+
+      const script = document.createElement('script');
+      script.src = `${page}.js`; // match the HTML path
+      script.id = 'page-script';
+      script.defer = true;
+      document.body.appendChild(script);
     })
     .catch(err => {
-      // Show error message if page loading fails
       document.getElementById('content').innerHTML = `
         <div class="alert alert-danger mt-4">
           <h4>Error</h4>
@@ -38,7 +64,10 @@ function router() {
 }
 
 // Event listener for hash changes (when user clicks links)
+// window.addEventListener('hashchange', router);
 window.addEventListener('hashchange', router);
+window.addEventListener('DOMContentLoaded', router);
+
 
 // Initial page load event
 window.addEventListener('load', router);
