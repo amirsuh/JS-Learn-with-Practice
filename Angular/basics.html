@@ -1,20 +1,27 @@
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <!-- <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+  </li> -->
     <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-hooks"
             type="button" role="tab" aria-controls="pills-home" aria-selected="true">Lifecycle Hooks</button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-encapsulation"
             type="button" role="tab" aria-controls="pills-profile" aria-selected="false">View Encapsulation</button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-Components"
+            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Components</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-directives"
+            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Directives</button>
     </li>
 
 </ul>
 <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <div class="tab-pane fade show active" id="pills-hooks" role="tabpanel" aria-labelledby="pills-hooks-tab">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
@@ -263,7 +270,7 @@
 
         </div>
     </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <div class="tab-pane fade" id="pills-encapsulation" role="tabpanel" aria-labelledby="pills-encapsulation-tab">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
@@ -470,5 +477,586 @@
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...contact</div>
+    <div class="tab-pane fade" id="pills-Components" role="tabpanel" aria-labelledby="pills-Components-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> What is a component in Angular? </div>
+                        <div class="card-body"> A component is the fundamental building block of an Angular application.
+                            It controls a section of the UI. It can have multple files as <ul>
+                                <li>A TypeScript class (logic)</li>
+                                <li>HTML template (view)</li>
+                                <li>optional CSS style file</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> What is Standalone Component ? </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-sm-8 col-md-8 col-lg-8">
+                                    <ul>
+                                        <li> Standalone components are a new type of Angular component that does not
+                                            need to be declared in a NgModule . These are components that can be used
+                                            directly in the template of another component without being part of an
+                                            NgModule, or imported in an NgModule.</li>
+                                        <li> We Define standalone component by adding standalone field as true</li>
+                                        <li>From Angular 16 we got standalone components</li>
+                                        <li>From 18 By Defyalt all Components are standalone</li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-sm-4 col-md-4 col-lg-4"><app-code-block>
+                                        <pre class="code-block"><code>
+  @Component({
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  standalone: true,
+  styleUrl: './add-user.component.css'
+})</code></pre>
+                                    </app-code-block></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> purpose of the @ Component decorator? </div>
+                        <div class="card-body"> The @Component decorator tells Angular that the class is a component, in
+                            component decorator we have so many options like <ul>
+                                <li><strong>selector</strong>: Defines the custom HTML tag used to embed the component.
+                                </li>
+                                <li><strong>template</strong>: Inline HTML content for the component.</li>
+                                <li><strong>templateUrl</strong>: Path to an external HTML file for the component
+                                    template.</li>
+                                <li><strong>styles</strong>: Inline CSS styles applied specifically to this component.
+                                </li>
+                                <li><strong>styleUrls</strong>: Path(s) to external CSS/SCSS files for styling the
+                                    component. </li>
+                                <li><strong>providers</strong>: Registers services at the component level (local DI).
+                                </li>
+                                <li><strong>encapsulation</strong>: Controls style encapsulation (Emulated, None, or
+                                    ShadowDom). </li>
+                                <li><strong>changeDetection</strong>: Sets the change detection strategy (Default or
+                                    OnPush). </li>
+                                <li><strong>imports</strong>: (Standalone only) Modules/components this standalone
+                                    component depends on.</li>
+                                <li><strong>standalone</strong>: (Angular 14+) Declares this component as standalone
+                                    (not part of a module).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> Data Binding in Component </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 bg-success text-center">
+                                    <h6>One Way Data Binding </h6>
+                                </div>
+                                <div class="col-6 bg-primary text-center">
+                                    <h6>Two Way Data Binding</h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 bg-secondary">
+                                    <div class="row">
+                                        <div class="col-6"> From .ts to .html </div>
+                                        <div class="col-6"> From .html to .ts </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 bg-primary">
+                                    <h6>Using ngModel</h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 bg-warning">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <ul>
+                                                <li>Property Binding</li>
+                                                <li>Interpolation</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6">
+                                            <ul>
+                                                <li>Event Binding</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 bg-primary"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> @Input() and @ Output() decorators and how are they used?
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li> @ Input(): Pass data from parent to child</li>
+                                <li> @Output(): Send event/data from child to parent</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> Various ways of component communication </div>
+                        <div class="card-body">
+                            <p>To pass data from one component to another there are following ways based on scenario</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>In case of Parent - Child Relationship</h6>
+                                    <ul>
+                                        <li>using Input and Output.</li>
+                                        <li>using viewChild.</li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <h6>In case of No Parent - Child Relationship</h6>
+                                    <ul>
+                                        <li>using service by storing value into variables.</li>
+                                        <li>using Subject &amp; SubjectBehaviour of RXJS.</li>
+                                        <li>using routing i.e. navigating from one component to another with query
+                                            param.</li>
+                                        <li>store data in local Storage or session Storage and read data wherever we
+                                            need.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <!-- <div class="container my-4"> -->
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+
+                            <!-- Important Features -->
+                            <h5 class="card-title mb-3">📌 Important Features</h5>
+                            <ul class="list-group list-group-flush mb-4">
+                                <li class="list-group-item">
+                                    <strong>Reusability</strong> → Components can be reused across different parts
+                                    of the app.
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Encapsulation</strong> → Each component has its own styles and logic.
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Hierarchy</strong> → Components can contain child components, forming a
+                                    tree.
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Data Binding</strong> → Supports one-way (<code>{{ }}</code>), two-way
+                                    (<code>[(ngModel)]</code>), and event binding (<code>(click)</code>).
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Dependency Injection</strong> → Services can be injected into components
+                                    for shared logic.
+                                </li>
+                            </ul>
+
+                            <!-- Best Practices -->
+                            <h5 class="card-title mb-3">⚡ Best Practices</h5>
+                            <ul class="list-group list-group-flush mb-4">
+                                <li class="list-group-item">
+                                    Keep components focused — one responsibility per component.
+                                </li>
+                                <li class="list-group-item">
+                                    Use <code>@Input()</code> / <code>@Output()</code> decorators for parent-child
+                                    communication.
+                                </li>
+                                <li class="list-group-item">
+                                    Organize components into modules for scalability.
+                                </li>
+                                <li class="list-group-item">
+                                    Prefer <strong>OnPush</strong> change detection for performance in large apps.
+                                </li>
+                                <li class="list-group-item">
+                                    Name selectors consistently (e.g., <code>app-xyz</code>) to avoid conflicts.
+                                </li>
+                            </ul>
+
+                            <!-- Component Lifecycle -->
+                            <h5 class="card-title mb-3">🌳 Component Lifecycle</h5>
+                            <p class="text-muted">
+                                Components go through stages managed by lifecycle hooks:
+                            </p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <strong>Creation</strong> → <code>ngOnInit</code>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Change Detection</strong> → <code>ngOnChanges</code>,
+                                    <code>ngDoCheck</code>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>View / Content Rendering</strong> → <code>ngAfterViewInit</code>,
+                                    <code>ngAfterContentInit</code>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Destruction</strong> → <code>ngOnDestroy</code>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-directives" role="tabpanel" aria-labelledby="pills-directives-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> What are directives </div>
+                        <div class="card-body">
+                            <p> Directives add behaviour to an existing DOM element or an existing component instance.
+                                Multple directives can be applied to single DOM element. It inform how DOM Element
+                                should behave </p>
+                            <ul>
+                                <li>Like in case of *ngIf it add or remove element</li>
+                                <li>by ngClass or ngStyle it add dynamic class or css to DOM Element</li>
+                                <li>ngModel sync variable with texbox value</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> Types of Directives </div>
+                        <div class="card-body">
+                            <ul>
+                                <li><strong>Structural Directive</strong> - responsible to add or remove elements from
+                                    DOM *ngIf , *ngFor.</li>
+                                <li><strong>Attribute Directive</strong> - responsible to add extra behavior to existing
+                                    element - ngClass, ngStyle</li>
+                                <li><strong>Component </strong>- directive with a template</li>
+                                <li><strong>Custom Directive</strong> - you can create custom directive by cli command
+                                    ng generate directive directive_name</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> What is Structural Directive ? </div>
+                        <div class="card-body">
+                            <p>Structural Directive are responsible to chnage structure of DOM, means they can add or
+                                remove element from DOM or Create New Elements also. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> *ngIf Directive ? </div>
+                        <div class="card-body">
+                            <p>*ngIf =&gt; needs Boolean value if true will render element or it will remove. we can
+                                pass variable, comparsion or function as well</p>
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>isDiv1Visiable: boolean = true;
+
+div2Status: string = 'Show';
+
+getDiv1VisibilityStatus() {
+  return this.isDiv1Visiable;
+}
+
+get getDiv2Status(): string {
+  return this.div2Status;
+}</code></pre>
+                                    </app-code-block></div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>&lt;div *ngIf="isDiv1Visiable == true" class="bg-success p-3"&gt;
+    Way - 1
+&lt;/div&gt;
+&lt;div *ngIf="div2Status == 'Show'" class="bg-danger p-3"&gt;
+     Way - 2
+&lt;/div&gt;
+    Way-3
+&lt;tr *ngFor="let item of studentList;let sr = index"&gt; 
+    &lt;td&gt;{{item.name}}&lt;/td&gt; 
+    &lt;td&gt;{{item.mobile}}&lt;/td&gt;
+    &lt;td&gt;
+        &lt;span *ngIf="item.isActive == true"&gt;Active&lt;/span&gt;
+        &lt;span *ngIf="item.isActive == false"&gt;De-active&lt;/span&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+ &lt;p *ngIf="getDiv1VisibilityStatus()"&gt;
+     way -4 
+ &lt;/p&gt;
+ &lt;p *ngIf="getDiv2Status"&gt;
+     way 5 using getter method
+  &lt;/p&gt;
+  </code></pre>
+                                    </app-code-block></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> *ngFor Directive ? </div>
+                        <div class="card-body">
+                            <p>*ngFor =&gt;Helps to iterate on Array / Helps to create Dynamic Element</p>
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>cityList = ['Nagpur', 'Delhi', 'Noida', 'Mumbai', 'Pune'];
+
+studentList = [
+  {isActive: false, name: 'AAA', city: 'pune', mobile: '99887766' },
+  {isActive: false, name: 'BBB', city: 'Mumbai', mobile: '1111111' },
+  {isActive: false, name: 'CCC', city: 'Solpur', mobile: '2222222' },
+  {isActive: false, name: 'DDD', city: 'Panji', mobile: '777777' },
+]
+
+getStudentList() {
+  return this.studentList.filter(m=&gt;m.isActive == true);
+}
+</code></pre>
+                                    </app-code-block></div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>&lt;ul&gt;
+   &lt;li *ngFor="let item of cityList"&gt; {{item}}&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;button class="btn btn-success" *ngFor="let city of cityList"&gt; {{city}}&lt;/button&gt;
+
+ &lt;tr *ngFor="let item of studentList;let sr = index"&gt;
+     &lt;td&gt;{{ sr+1}}&lt;/td&gt;
+     &lt;td&gt;{{item.name}}&lt;/td&gt;
+     &lt;td&gt;{{item.mobile}}&lt;/td&gt;
+ &lt;/tr&gt;
+
+ &lt;ul&gt;
+   &lt;li *ngFor="let item of getStudentList()"&gt; {{item.name}}&lt;/li&gt;
+ &lt;/ul&gt;
+ </code></pre>
+                                    </app-code-block></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> *ngSwitch Directive ? </div>
+                        <div class="card-body">
+                            <p>Render Element based on Multple conditions</p>
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>startingCharDayName: string = 'tue';</code></pre>
+                                    </app-code-block></div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>&lt;div [ngSwitch]="startingCharDayName"&gt;
+    &lt;span *ngSwitchCase="'mon'"&gt;Monday&lt;/span&gt;
+    &lt;span *ngSwitchCase="'tue'"&gt;tuesday&lt;/span&gt;
+    &lt;span *ngSwitchCase="'wed'"&gt;wednesday&lt;/span&gt;
+    &lt;span *ngSwitchCase="'thu'"&gt;Thirsday&lt;/span&gt;
+    &lt;span *ngSwitchDefault&gt;No Value&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                                    </app-code-block></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> How to Create Custom Directive </div>
+                        <div class="card-body">
+                            <p>According to requirment we Create Custom Directive with Our own set of rules and
+                                Behaviour</p>
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>ng generate directive highlight =&gt; cmd to create Directive
+
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+@Directive({
+  selector: '[appHoverHighlight]'
+})
+export class HoverHighlightDirective {
+  constructor(private el: ElementRef) {}
+  @HostListener('mouseenter') onMouseEnter() {
+    this.el.nativeElement.style.backgroundColor = 'yellow';
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.el.nativeElement.style.backgroundColor = 'black';
+  }
+}</code></pre>
+                                    </app-code-block></div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>ng generate directive numbersOnly
+
+@Directive({
+  selector: '[appNumbersOnly]'
+})
+export class NumbersOnlyDirective {
+
+  constructor() { }
+
+  @HostListener('keypress', ['$event']) onKeyPress(event: KeyboardEvent) {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode &lt; 48 || charCode &gt; 57) {// Allow: 0-9 only
+      event.preventDefault();
+    }
+  }
+}</code></pre>
+                                    </app-code-block></div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>ng generate directive tooltip
+
+  @Input('appTooltip') tooltipText: string = '';
+  tooltip: HTMLElement | null = null;
+
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
+
+  @HostListener('mouseenter') onMouseEnter() {
+    if (!this.tooltip) {
+      this.tooltip = this.renderer.createElement('span');
+      this.tooltip.innerText = this.tooltipText;
+      this.renderer.appendChild(document.body, this.tooltip);
+
+      this.renderer.setStyle(this.tooltip, 'position', 'fixed');
+      this.renderer.setStyle(this.tooltip, 'background-color', '#333');
+      this.renderer.setStyle(this.tooltip, 'color', '#fff');
+      this.renderer.setStyle(this.tooltip, 'padding', '5px 10px');
+      this.renderer.setStyle(this.tooltip, 'border-radius', '4px');
+      this.renderer.setStyle(this.tooltip, 'font-size', '12px');
+      this.renderer.setStyle(this.tooltip, 'z-index', '1000');
+    }
+  }
+
+  @HostListener('mousemove', ['$event']) onMouseMove(event: MouseEvent) {
+    if (this.tooltip) {
+      this.renderer.setStyle(this.tooltip, 'top', (event.clientY + 10) + 'px');
+      this.renderer.setStyle(this.tooltip, 'left', (event.clientX + 10) + 'px');
+    }
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    if (this.tooltip) {
+      this.renderer.removeChild(document.body, this.tooltip);
+      this.tooltip = null;
+    }
+  }</code></pre>
+                                    </app-code-block></div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>ng generate directive hasRole
+  @Directive({
+  selector: '[appHasRole]'
+})
+export class HasRoleDirective {
+
+  constructor(private el: ElementRef) {
+    const loggedRole = localStorage.getItem('loggedInRole');
+     
+    if (loggedRole !== 'Admin') {
+      this.el.nativeElement.style.display = 'none'
+    }
+  } 
+}</code></pre>
+                                    </app-code-block></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> What is ElementRef in Angular? </div>
+                        <div class="card-body">
+                            <p>ElementRef allows you to interact you with dom Element, it gets you instance of DOM
+                                element.</p>
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                    <ul>
+                                        <li>ElementRef is a wrapper around the native DOM element.</li>
+                                        <li>It gives you direct access to the HTML element in your directive or
+                                            component.</li>
+                                        <li>You can change style, class, content, attributes,Read or modify element
+                                            attributes</li>
+                                        <li>What we do in JavaScript with Document.getElementById , some of it we can do
+                                            with ElementRef</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> What is Renderer2? </div>
+                        <div class="card-body">
+                            <p>It's a serivice which allows you to manipulate DOM</p>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <ul>
+                                        <li>setStyle -Set CSS styles (this.renderer.setStyle(this.el.nativeElement,
+                                            'backgroundColor', 'red');)</li>
+                                        <li>removeStyle, addClass,createElement, appendChild</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> What is @HostListener? </div>
+                        <div class="card-body">
+                            <p>allows you to listen to DOM events on the element where your directive or component </p>
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                    <ul>
+                                        <li>whenever event happens on my host element, it execute method</li>
+                                        <li>It's a decorator provided by Angular.</li>
+                                        <li>Instead of manually adding event listeners (like addEventListener), Angular
+                                            handles it for you safely and cleanly.</li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6"><app-code-block>
+                                        <pre class="code-block"><code>@HostListener(eventName: string, [args: string[]])
+methodName(args) {
+   // handle event
+}
+@HostListener('mouseenter')
+onMouseEnter() {
+  this.renderer.setStyle(this.el.nativeElement, 'background-color', 'yellow');
+}
+@HostListener('mouseleave')
+onMouseLeave() {
+  this.renderer.removeStyle(this.el.nativeElement, 'background-color');
+}</code></pre>
+                                    </app-code-block></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> purpose of trackBy in ngFor Directive </div>
+                        <div class="card-body">
+                            <p>trackBy option in *ngFor allows you to specify a function that Angular can use to track
+                                items by a unique identifier instead of relying on object reference identity. This
+                                identifier helps Angular keep track of which items have changed, been added, or been
+                                removed when the data changes. It improves performance, especially when dealing with
+                                large lists, by avoiding unnecessary re-rendering of DOM elements. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
