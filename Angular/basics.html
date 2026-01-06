@@ -1,1 +1,265 @@
-<h4>Basics works</h4>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+            type="button" role="tab" aria-controls="pills-home" aria-selected="true">Lifecycle Hooks</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+            type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+    </li>
+
+</ul>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary title"> Angular Lifecycle Hooks </div>
+                        <div class="card-body"><app-my-button><button
+                                    class="btn btn-success title">Button</button></app-my-button>
+                            <div class="row">
+                                <div class="col-12"> Angular components and directives have a series of lifecycle phases
+                                    from
+                                    creation to destruction. Lifecycle hooks are special methods that allow you to write
+                                    code
+                                    onto these phases to execute custom logic. </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ngOnChanges </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li>Invoked when any data-bound input property changes.</li>
+                                        <li> Reacting to changes in @Input() properties</li>
+                                    </ul><app-code-block>
+                                        <pre class="code-block"><code></code></pre>
+                                    </app-code-block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ngOnInit </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> Called once after the first ngOnChanges().</li>
+                                        <li> Initializing component properties, fetching data, or setting up
+                                            subscriptions.&ZeroWidthSpace;</li>
+                                    </ul><button>change</button><app-my-button><button
+                                            class="btn btn-success title"></button></app-my-button><app-code-block>
+                                        <pre class="code-block"><code></code></pre>
+                                    </app-code-block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ngDoCheck </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p> The ngDoCheck lifecycle hook in Angular is a powerful tool for implementing
+                                        custom
+                                        change detection logic, especially when Angular's default change detection
+                                        doesn't
+                                        suffice. </p>
+                                    <p> Means Lets say you have a resusable component with input and you are getting
+                                        object in
+                                        that Input now in preant component if you change variabel value which yiur
+                                        passing as
+                                        Input you ngOnCHnages in Child component will execute but if you just chnaged
+                                        one field
+                                        value in parent component you ngOnchange won't execute in that case you can
+                                        detect
+                                        chnages in ngDoCheck </p>
+                                    <div class="row">
+                                        <div class="col-8"> Child <app-code-block>
+                                                <pre class="code-block"><code></code></pre>
+                                            </app-code-block></div>
+                                        <div class="col-4"> parent <app-code-block>
+                                                <pre class="code-block"><code></code></pre>
+                                            </app-code-block></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"> in case of this ngOnChnage in MyButtonComponent component
+                                            won't
+                                            execute <app-code-block>
+                                                <pre class="code-block"><code></code></pre>
+                                            </app-code-block></div>
+                                        <div class="col-6"> in case of this ngOnChnage in MyButtonComponent component
+                                            will
+                                            execute <app-code-block>
+                                                <pre class="code-block"><code></code></pre>
+                                            </app-code-block></div>
+                                    </div><button>change</button><app-my-button><button
+                                            class="btn btn-success title"></button></app-my-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ngAfterContentInit </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> Called after Angular projects external content into the component's view.
+                                        </li>
+                                        <li> Accessing projected content using ContentChild() or
+                                            ContentChildren()&ZeroWidthSpace;</li>
+                                    </ul><app-code-block>
+                                        <pre class="code-block"><code></code></pre>
+                                    </app-code-block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ngAfterContentChecked </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> Called after every check of projected content.</li>
+                                        <li>Responding to changes in projected content.&ZeroWidthSpace;</li>
+                                    </ul><app-code-block>
+                                        <pre class="code-block"><code></code></pre>
+                                    </app-code-block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ngAfterViewInit </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> Called after Angular initializes the component's views and child views.
+                                        </li>
+                                        <li> Accessing ViewChild() or ViewChildren() properties.&ZeroWidthSpace;</li>
+                                        <li>or DOM Interactions: Access and manipulate DOM elements only after the view
+                                            has been
+                                            initialized</li>
+                                    </ul><app-code-block>
+                                        <pre class="code-block"><code></code></pre>
+                                    </app-code-block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ngAfterViewChecked </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> Called after every check of the component's views and child views.</li>
+                                        <li>Responding to changes in the component's view.&ZeroWidthSpace;</li>
+                                    </ul><app-code-block>
+                                        <pre class="code-block"><code></code></pre>
+                                    </app-code-block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ngOnDestroy </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> Cleanup just before Angular destroys the component</li>
+                                        <li>Unsubscribing from observables, detaching event handlers, or other cleanup
+                                            tasks.&ZeroWidthSpace;&ZeroWidthSpace;</li>
+                                    </ul><app-code-block>
+                                        <pre class="code-block"><code></code></pre>
+                                    </app-code-block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> 📌 Important Notes for Developers </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> - Initialization: Always prefer ngOnInit over constructors for setup logic,
+                                            since Angular initializes inputs before calling it.</li>
+                                        <li> - Change Detection: Use ngOnChanges for reacting to input changes, but for
+                                            complex scenarios, ngDoCheck gives finer control.</li>
+                                        <li> - View & Content Hooks: These are essential when working with projected
+                                            content (ng-content) or child components.</li>
+                                        <li> - Cleanup: Forgetting ngOnDestroy can cause memory leaks (e.g., unclosed
+                                            subscriptions). Always unsubscribe or clear timers here.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ⚡ Best Practices </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> - Keep hooks lightweight — avoid heavy logic inside them.</li>
+                                        <li> - Use RxJS takeUntil pattern or AsyncPipe to manage subscriptions cleanly.</li>
+                                        <li>- Avoid unnecessary use of ngDoCheck — it can hurt performance if misused.</li>
+                                        <li>- Combine hooks with Angular’s dependency injection for clean, testable code.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card" style="    width: 93.5rem;">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <img src="../assets/images/lifecycle-hook.png" alt="" style="width: 93.5rem;"
+                                        class="img-fluid rounded mx-auto d-block" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...profile</div>
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...contact</div>
+</div>
