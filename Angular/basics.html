@@ -5,7 +5,7 @@
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-            type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+            type="button" role="tab" aria-controls="pills-profile" aria-selected="false">View Encapsulation</button>
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
@@ -235,9 +235,12 @@
                                 <div class="col-12">
                                     <ul>
                                         <li> - Keep hooks lightweight — avoid heavy logic inside them.</li>
-                                        <li> - Use RxJS takeUntil pattern or AsyncPipe to manage subscriptions cleanly.</li>
-                                        <li>- Avoid unnecessary use of ngDoCheck — it can hurt performance if misused.</li>
-                                        <li>- Combine hooks with Angular’s dependency injection for clean, testable code.</li>
+                                        <li> - Use RxJS takeUntil pattern or AsyncPipe to manage subscriptions cleanly.
+                                        </li>
+                                        <li>- Avoid unnecessary use of ngDoCheck — it can hurt performance if misused.
+                                        </li>
+                                        <li>- Combine hooks with Angular’s dependency injection for clean, testable
+                                            code.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -260,6 +263,212 @@
 
         </div>
     </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...profile</div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary title"> View Encapsulation </div>
+                        <div class="card-body"><app-my-button><button
+                                    class="btn btn-success title">Button</button></app-my-button>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p> View Encapsulation determines how styles defined in a component affect the
+                                        component's template and whether they can influence or be influenced by styles
+                                        outside the component. </p>
+                                    <p> This mechanism ensures that styles are scoped appropriately, preventing
+                                        unintended side effects across components.&ZeroWidthSpace;</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> What Is Shadow DOM </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p> Shadow DOM is a web standard that enables encapsulation of a component's
+                                        internal structure and styling, ensuring that its internal DOM and CSS are
+                                        isolated from the rest of the document. </p>
+                                    <p>This means styles defined within a Shadow DOM do not affect the main document,
+                                        and vice versa.&ZeroWidthSpace; </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> encapsulation: ViewEncapsulation.Emulated (Default)
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p> In Emulated mode, Angular simulates the behavior of the Shadow DOM by modifying
+                                        the component's styles and template during compilation. It does this
+                                        by:&ZeroWidthSpace; </p>
+                                    <ul>
+                                        <li><strong>Adding Unique Attributes to Elements</strong> Angular appends unique
+                                            attributes to the component's HTML elements. These attributes are typically
+                                            in the form of _ngcontent-xyz, where xyz is a unique
+                                            identifier.&ZeroWidthSpace; </li>
+                                        <li><strong>Modifying CSS Selectors:Angular updates the component's CSS
+                                                selectors to target these unique attributes, ensuring that the styles
+                                                apply only to the elements within the
+                                                component.&ZeroWidthSpace;</strong></li>
+                                    </ul>
+                                    <hr>
+                                    <h6>To Test This</h6>
+                                    <ul>
+                                        <li>Create a reusable component, lets say Button component have a class added
+                                            title on button </li>
+                                        <li>now in parent component create a class title with some color</li>
+                                        <li>in emulated case - title class wont get applied to button component</li>
+                                        <li>in none case title class from parent component n will get applied to child
+                                            component as well</li>
+                                        <li>it means it will limit css within that component only</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> encapsulation: ViewEncapsulation.None </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> No encapsulation; styles are applied globally and can affect other
+                                            components. </li>
+                                    </ul>
+                                    <hr>
+                                    <h6>To Test This</h6>
+                                    <ul>
+                                        <li>Create a reusable component, lets say Button component have a class added
+                                            title on button </li>
+                                        <li>now in parent component create a class title with some color</li>
+                                        <li>in none case title class from parent component n will get applied to child
+                                            component as well</li>
+                                        <li>it means it will limit css within that component only</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> encapsulation: ViewEncapsulation.ShadowDom </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> Utilizes the browser's native Shadow DOM to encapsulate styles, providing
+                                            true style isolation </li>
+                                        <li> it won;t use any bootstrap or any global css as well, only css which are
+                                            present in component </li>
+                                    </ul>
+                                    <hr>
+                                    <h6>To Test This</h6>
+                                    <ul>
+                                        <li>Create a reusable component, lets say Button component have a class added
+                                            title on button </li>
+                                        <li>now in parent component create a class title with some color</li>
+                                        <li>in none case title class from parent component n will get applied to child
+                                            component as well</li>
+                                        <li>it means it will limit css within that component only</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> Real-Time Scenario </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li><strong>EmulatedComponent:</strong> Uses ViewEncapsulation.Emulated to
+                                            ensure its styles don't leak out. </li>
+                                        <li><strong>ShadowDomComponent:</strong> Uses ViewEncapsulation.ShadowDom for
+                                            true style isolation. </li>
+                                        <li><strong>NoneComponent:</strong> Uses ViewEncapsulation.None, allowing its
+                                            styles to affect other components. </li>
+                                    </ul>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> 📌 Important Notes for Developers </div>
+                        <div class="card-body">
+                            <div class="row">
+
+
+                                <div class="col-12">
+                                    <ul>
+                                        <li> - Default is Emulated → Most apps use this because it balances isolation
+                                            and flexibility.</li>
+                                        <li> - None → Be cautious: styles can override other components unintentionally.
+                                        </li>
+                                        <li> - ShadowDom → Best for strict isolation, but may have limitations with
+                                            global styles or third-party libraries.
+                                        </li>
+                                        <li> - Encapsulation is set at the component level using the encapsulation
+                                            property in @Component.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary"> ⚡ Best Practices </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> - Use Emulated unless you have a strong reason otherwise.
+                                        </li>
+                                        <li> - For design systems or reusable libraries, prefer ShadowDom for true
+                                            isolation.
+                                        </li>
+                                        <li>- Use None sparingly — mainly for global themes or when integrating CSS
+                                            frameworks like Bootstrap.
+                                        </li>
+                                        <li>- Always test styles across components to avoid unexpected overrides.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card" style="    width: 93.5rem;">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <img src="../assets/images/view-encapsulation.png" alt="" style="width: 93.5rem;"
+                                        class="img-fluid rounded mx-auto d-block" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...contact</div>
 </div>
