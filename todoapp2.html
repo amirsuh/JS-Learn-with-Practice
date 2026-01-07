@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Application</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #0891b2;
+            --primary-dark: #0e7490;
+            --secondary-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --light-bg: #f0fdfa;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdfa 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 0;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .app-header h1 {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .app-header h1 i {
+            color: var(--secondary-color);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            background: white;
+            margin-bottom: 24px;
+        }
+
+        .card:hover {
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .add-todo-card {
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .search-sort-card {
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 16px 16px 0 0 !important;
+            padding: 16px 24px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(6, 182, 212, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 28px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(6, 182, 212, 0.4);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .todo-item {
+            background: white;
+            border: 2px solid #f3f4f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .todo-item:hover {
+            border-color: var(--secondary-color);
+            box-shadow: var(--card-shadow);
+            transform: translateX(5px);
+        }
+
+        .todo-item.completed {
+            background: #f0fdf4;
+            border-color: var(--success-color);
+            opacity: 0.8;
+        }
+
+        .todo-item.completed .todo-title {
+            text-decoration: line-through;
+            color: #6b7280;
+        }
+
+        .todo-item.in-progress {
+            background: #fffbeb;
+            border-color: var(--warning-color);
+        }
+
+        .todo-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .todo-description {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .todo-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            font-weight: 600;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-pending {
+            background-color: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .status-in-progress {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-completed {
+            background-color: #d1fae5;
+            color: #047857;
+        }
+
+        .priority-high {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+
+        .priority-medium {
+            background-color: #fed7aa;
+            color: #ea580c;
+        }
+
+        .priority-low {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .todo-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-action {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-status {
+            background-color: #e0f2fe;
+            color: var(--primary-color);
+        }
+
+        .btn-status:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #f0fdf4;
+            color: var(--success-color);
+        }
+
+        .btn-edit:hover {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #fee2e2;
+            color: var(--danger-color);
+        }
+
+        .btn-delete:hover {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .icon-all {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+        }
+
+        .icon-pending {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            color: #4338ca;
+        }
+
+        .icon-progress {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #d97706;
+        }
+
+        .icon-completed {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #047857;
+        }
+
+        .input-group {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .input-group .form-control {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .input-group .btn {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #9ca3af;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-state h3 {
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .app-header h1 {
+                font-size: 2rem;
+            }
+
+            .todo-actions {
+                width: 100%;
+                margin-top: 12px;
+                margin-left: 0;
+                justify-content: flex-end;
+            }
+
+            .todo-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container main-container">
+        <!-- Header -->
+        <div class="app-header">
+            <h1><i class="fas fa-tasks"></i> Todo Application</h1>
+            <p class="text-muted">Organize your tasks efficiently and stay productive</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon icon-all">
+                    <i class="fas fa-list"></i>
+                </div>
+                <div class="stat-value">12</div>
+                <div class="stat-label">Total Tasks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-pending">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-value">5</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-progress">
+                    <i class="fas fa-spinner"></i>
+                </div>
+                <div class="stat-value">3</div>
+                <div class="stat-label">In Progress</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-completed">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-value">4</div>
+                <div class="stat-label">Completed</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Add New Todo Section -->
+            <div class="col-lg-5 mb-4">
+                <div class="card add-todo-card">
+                    <div class="card-header">
+                        <i class="fas fa-plus-circle me-2"></i>Add New Task
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="todoTitle" class="form-label fw-semibold">
+                                    <i class="fas fa-heading me-2 text-primary"></i>Title
+                                </label>
+                                <input type="text" class="form-control" id="todoTitle" placeholder="Enter task title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="todoDescription" class="form-label fw-semibold">
+                                    <i class="fas fa-align-left me-2 text-primary"></i>Description
+                                </label>
+                                <textarea class="form-control" id="todoDescription" rows="3" placeholder="Enter task description"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="todoPriority" class="form-label fw-semibold">
+                                    <i class="fas fa-flag me-2 text-primary"></i>Priority
+                                </label>
+                                <select class="form-select" id="todoPriority">
+                                    <option value="low">Low Priority</option>
+                                    <option value="medium" selected>Medium Priority</option>
+                                    <option value="high">High Priority</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="todoDueDate" class="form-label fw-semibold">
+                                    <i class="fas fa-calendar-alt me-2 text-primary"></i>Due Date
+                                </label>
+                                <input type="date" class="form-control" id="todoDueDate">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-plus me-2"></i>Add Task
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search, Sort & Todo List Section -->
+            <div class="col-lg-7">
+                <!-- Search and Sort -->
+                <div class="card search-sort-card">
+                    <div class="card-header">
+                        <i class="fas fa-filter me-2"></i>Filter & Sort
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0">
+                                        <i class="fas fa-search text-primary"></i>
+                                    </span>
+                                    <input type="text" class="form-control border-start-0" placeholder="Search tasks...">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option value="">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="in-progress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option value="date-desc">Latest First</option>
+                                    <option value="date-asc">Oldest First</option>
+                                    <option value="priority-desc">High Priority</option>
+                                    <option value="priority-asc">Low Priority</option>
+                                    <option value="title-asc">A to Z</option>
+                                    <option value="title-desc">Z to A</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Todo Items List -->
+                <div class="mt-4">
+                    <!-- Todo Item 1 - High Priority, Pending -->
+                    <div class="todo-item">
+                        <div class="todo-title">
+                            <i class="fas fa-circle text-danger me-2"></i>
+                            Complete project documentation
+                        </div>
+                        <div class="todo-description">
+                            Write comprehensive documentation for the new feature including API references and usage examples
+                        </div>
+                        <div class="todo-meta">
+                            <span class="badge status-pending badge-status">
+                                <i class="fas fa-clock"></i> Pending
+                            </span>
+                            <span class="badge priority-high">
+                                <i class="fas fa-flag"></i> High Priority
+                            </span>
+                            <span class="text-muted small">
+                                <i class="far fa-calendar"></i> Due: Jan 15, 2026
+                            </span>
+                            <div class="todo-actions">
+                                <button class="btn-action btn-status" title="Change Status">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="btn-action btn-edit" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Todo Item 2 - Medium Priority, In Progress -->
+                    <div class="todo-item in-progress">
+                        <div class="todo-title">
+                            <i class="fas fa-circle text-warning me-2"></i>
+                            Review pull requests
+                        </div>
+                        <div class="todo-description">
+                            Review and provide feedback on pending pull requests from team members
+                        </div>
+                        <div class="todo-meta">
+                            <span class="badge status-in-progress badge-status">
+                                <i class="fas fa-spinner"></i> In Progress
+                            </span>
+                            <span class="badge priority-medium">
+                                <i class="fas fa-flag"></i> Medium Priority
+                            </span>
+                            <span class="text-muted small">
+                                <i class="far fa-calendar"></i> Due: Jan 10, 2026
+                            </span>
+                            <div class="todo-actions">
+                                <button class="btn-action btn-status" title="Change Status">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="btn-action btn-edit" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Todo Item 3 - Low Priority, Completed -->
+                    <div class="todo-item completed">
+                        <div class="todo-title">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Update team meeting notes
+                        </div>
+                        <div class="todo-description">
+                            Share the meeting notes from yesterday's standup with the team
+                        </div>
+                        <div class="todo-meta">
+                            <span class="badge status-completed badge-status">
+                                <i class="fas fa-check-circle"></i> Completed
+                            </span>
+                            <span class="badge priority-low">
+                                <i class="fas fa-flag"></i> Low Priority
+                            </span>
+                            <span class="text-muted small">
+                                <i class="far fa-calendar"></i> Due: Jan 08, 2026
+                            </span>
+                            <div class="todo-actions">
+                                <button class="btn-action btn-status" title="Change Status">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="btn-action btn-edit" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Todo Item 4 - Medium Priority, Pending -->
+                    <div class="todo-item">
+                        <div class="todo-title">
+                            <i class="fas fa-circle text-primary me-2"></i>
+                            Prepare presentation slides
+                        </div>
+                        <div class="todo-description">
+                            Create slides for next week's client presentation covering Q4 results
+                        </div>
+                        <div class="todo-meta">
+                            <span class="badge status-pending badge-status">
+                                <i class="fas fa-clock"></i> Pending
+                            </span>
+                            <span class="badge priority-medium">
+                                <i class="fas fa-flag"></i> Medium Priority
+                            </span>
+                            <span class="text-muted small">
+                                <i class="far fa-calendar"></i> Due: Jan 12, 2026
+                            </span>
+                            <div class="todo-actions">
+                                <button class="btn-action btn-status" title="Change Status">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="btn-action btn-edit" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Todo Item 5 - High Priority, In Progress -->
+                    <div class="todo-item in-progress">
+                        <div class="todo-title">
+                            <i class="fas fa-circle text-warning me-2"></i>
+                            Fix critical bugs
+                        </div>
+                        <div class="todo-description">
+                            Address the critical bugs reported in the production environment
+                        </div>
+                        <div class="todo-meta">
+                            <span class="badge status-in-progress badge-status">
+                                <i class="fas fa-spinner"></i> In Progress
+                            </span>
+                            <span class="badge priority-high">
+                                <i class="fas fa-flag"></i> High Priority
+                            </span>
+                            <span class="text-muted small">
+                                <i class="far fa-calendar"></i> Due: Jan 09, 2026
+                            </span>
+                            <div class="todo-actions">
+                                <button class="btn-action btn-status" title="Change Status">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="btn-action btn-edit" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
