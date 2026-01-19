@@ -1,0 +1,391 @@
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <!-- <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+  </li> -->
+
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#advance-ngrx"
+            type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Advanced Ngrx</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#basic-ngrx" type="button"
+            role="tab" aria-controls="pills-home" aria-selected="true">Basic Ngrx</button>
+    </li>
+    <!-- <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-Components"
+            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Components</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-directives"
+            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Directives</button>
+    </li> -->
+
+</ul>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade" id="basic-ngrx" role="tabpanel" aria-labelledby="basic-ngrx-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <pre>                    ng add @ngrx/store
+                </pre>
+                    <div class="card">
+                        <div class="card-header bg-secondary">
+                            Step 1: Create Actions
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Actions define what can happen in the application. They are simple objects describing an
+                                event.
+                                actions don't contain any logic; they just describe what happens
+                            </p>
+                            <p>
+                                means when you create your store what Operation you can provide with that store that
+                                youi define
+                                over here.Liie for Counter Increment and Decrement
+
+                            </p>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>counter.actions.ts</p>
+                                    <pre>
+import { createAction } from '@ngrx/store';
+
+export const increment = createAction('[Counter] Increment');
+export const decrement = createAction('[Counter] Decrement');
+export const reset = createAction('[Counter] Reset');
+                                    
+</pre>
+                                    <p>When the user clicks the "Increment" button, we dispatch the increment action.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary">
+                            Step 2:Create Reducer
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                A reducer is a pure function that takes the current state and an action and returns the
+                                new
+                                state.
+                            </p>
+                            <p>
+                                Reducers are pure functions, meaning they don't modify the original state but return a
+                                new
+                                state.
+                            </p>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>counter.actions.ts</p>
+                                    <pre>import { createReducer, on } from '@ngrx/store';
+import { increment, decrement, reset } from './counter.actions';
+
+export const initialState = 0;
+
+export const counterReducer = createReducer(
+  initialState,
+  on(increment, (state) =&gt; state + 1),
+  on(decrement, (state) =&gt; state - 1),
+  on(reset, () =&gt; 0)
+);          
+</pre>
+                                    <p>createReducer() defines how the state should change based on actions:</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary">
+                            Step 3: Create state inreface menas what type data your goint to stiore into state
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>app.state.ts</p>
+                                    <pre>export interface AppState {
+    count: number;
+}
+</pre>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary">
+                            Step 4: Register Reducer in Store in app.module.ts
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                The Store is like a global state container that holds all application state
+                            </p>
+
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>app.module.ts</p>
+                                    <pre>import { counterReducer } from './store/counter/counter.reducer';
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    StoreModule.forRoot({ count: counterReducer }) // Register reducer
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+</pre>
+
+                                </div>
+                                <div class="col-6">
+                                    <p>app.config.ts</p>
+                                    <pre>export const appConfig: ApplicationConfig = {
+    providers: [provideZoneChangeDetection({ eventCoalescing: true }),
+      provideStore({count: counterReducer}),
+      provideRouter(routes)]
+};
+</pre>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>StoreModule.forRoot({ count: counterReducer }) =&gt; Registers the counterReducer
+                                        in the
+                                        global store. and count becomes the key in the state.
+                                    </p>
+                                    <pre>{
+    "count": 0
+}    
+                                    </pre>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary">
+                            Step 5: How to Acces store and Update store from component
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                The Store is like a global state container that holds all application state
+                            </p>
+
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>app.component.ts ,| =&gt; angular bracket</p>
+                                    <pre>count$: Observable |number|;
+constructor(private store: Store|AppState|) {
+  this.count$ = this.store.pipe(select('count'));
+}
+
+increment() {
+   this.store.dispatch(increment()); 
+}
+
+decrement() {
+  this.store.dispatch(decrement());  
+}
+
+reset() {
+  this.store.dispatch(reset());
+}
+</pre>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <div class="card">
+                        <div class="card-header bg-secondary">
+                            How Above works
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                The Store is like a global state container that holds all application state
+                            </p>
+                            <p>
+                                store.select('count') =&gt; this is how we read data from store by select method and
+                                prviding
+                                state name
+                            </p>
+                            <p>
+                                The reason we use this.store.pipe(select('count')) instead of this.store.select('count')
+                                directly is due to how RxJS and NgRx handle state selection. <br>
+                                select() is an RxJS operator and In NgRx, select() is not a method on Store , Since it
+                                is an
+                                operator, it must be used inside
+                            </p>
+                            <p>
+                                dispatch action =&gt; this actually by using action we are trigging our reducer
+                            </p>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <pre>[ User Clicks Button ] 
+      ↓  
+[ Component Dispatches Action ] 
+      ↓  
+[ Action Sent to Store ]  
+      ↓  
+[ Reducer Updates State ]  
+      ↓  
+[ Store Emits New State ]  
+      ↓  
+[ Component Receives Updated State ]  
+      ↓  
+[ UI Updates Automatically ]
+
+                                 </pre>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="tab-pane fade show active" id="advance-ngrx" role="tabpanel" aria-labelledby="advance-ngrx-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 pt-2">
+                    <pre>                    ng add @ngrx/store
+                </pre>
+                    <div class="card">
+                        <div class="card-header bg-secondary">
+                            Step 1: Create REducers
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Reducers define how the application's state changes in response to actions.
+                                They are pure functions that take the current state and an action, and return a new
+                                state.
+                            </p>
+                            <p>
+                                Reducers don’t perform side effects or contain business logic; they simply describe how
+                                the state should be updated.
+                                For example, in a counter app, a reducer specifies how the state changes when an
+                                Increment or Decrement action is dispatched.
+                            </p>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>grocery.reducers.ts</p>
+                                    <pre>
+Grocery Reducer
+import { createReducer, on } from "@ngrx/store";
+import { IGrocery } from "../../models/grocery.model";
+import { groceryAction } from "../action/grocery.action";
+
+// const initialState:IGrocery[] = [
+//   {
+//     id: 1,
+//     name: 'milk',
+//     type: 'fruit',
+//   },
+//   {
+//     id: 2,
+//     name: 'Banana',
+//     type: 'fruit',
+//   },
+//   {
+//     id: 3,
+//     name: 'Layc chip',
+//     type: 'snacks',
+//   },
+//   {
+//     id: 4,
+//     name: 'dorita',
+//     type: 'snacks',
+//   },
+// ];
+
+const initialState:IGrocery[] = []
+
+export const groceryReducer =createReducer(initialState,
+  // #8.1 after adding effects in appConfig.config.ts we can call success and failure inside reducer
+  on(groceryAction.loadGroceriesSuccess,(state,action)=>{
+    return action.payload
+  }),
+  on(groceryAction.loadGroceriesFailure,(state,action)=>{
+    return []
+  })
+)
+
+
+
+
+Bucket-Reducer
+import { createReducer, on } from "@ngrx/store";
+import { IBucket } from "../../models/bucket.model";
+import { addToBucket, removeFromBucket } from "../action/bucket.action";
+
+//#3 create reducer for Bucket
+const initialState:IBucket[] = [];
+
+//#3.1 Listen to addtobucket
+export const bucketReducer = createReducer(initialState,
+  on(addToBucket,(state,action)=>{
+    //3.2 if item is present in bucket then need to increment quantity
+    const bucketItem =  state.find(item=>item.id===action.payload.id)
+    if(bucketItem){
+   return state.map(item=>item.id===action.payload.id? {...item,quantity:item.quantity+action.payload.quantity}:item)
+    }else{
+     return [
+      //prev state
+      ...state,
+      //append new state
+      action.payload
+     ]
+    }
+
+  }),
+  //3.3 to remove from bucket
+  on(removeFromBucket,(state,action)=>{
+    const bucketItem =  state.find(item=>item.id===action.payload.id)
+    if(bucketItem && bucketItem.quantity>1){
+     return state.map(item=>item.id===action.payload.id? {...item,quantity:item.quantity-1}:item)
+    }else{
+      return state.filter(item=>item.id!==action.payload.id)
+    }
+
+  })
+)
+
+                                    
+</pre>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
