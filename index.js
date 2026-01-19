@@ -1,4 +1,4 @@
-// Updated JS
+// Updated JS 
 // Improved routing and page loading system
 
 // Cache for loaded pages to avoid reloading
@@ -23,22 +23,24 @@ async function loadPage(page) {
       return;
     }
 
-    const response = await fetch(`${repoBase}${page}.html`);
-
+    let repoPath = repoBase ==='/JS-Learn-with-Practice/' ? `${repoBase}${page}`:`${page}`
+       
+    const response = await fetch(`${repoPath}.html`);
+    
     if (!response.ok) {
       throw new Error("Page not found");
     }
-
+    
     const html = await response.text();
-
+    
     // Cache the page
     pageCache.set(page, html);
-
+    
     // Inject content
     document.getElementById("content").innerHTML = html;
-
+    
     // Load associated script
-    loadPageScript(page);
+    loadPageScript(page);    
   } catch (err) {
     document.getElementById("content").innerHTML = `
       <div class="container mt-4">
@@ -60,16 +62,17 @@ function loadPageScript(page) {
   }
 
   // Create and append new script
+  let repoPath = repoBase ==='/JS-Learn-with-Practice/' ? `${repoBase}${page}`:`${page}`
   const script = document.createElement("script");
-  script.src = `${repoBase}${page}.js`;
+  script.src = `${repoPath}.js`;
   script.id = "page-script";
   script.defer = true;
-
+  
   // Handle script load errors gracefully
   script.onerror = () => {
     console.log(`No script file found for ${page}.js - this is okay`);
   };
-
+  
   document.body.appendChild(script);
   currentPageScript = script;
 }
@@ -78,7 +81,7 @@ function loadPageScript(page) {
 function router() {
   const hash = location.hash.replace("#", "") || "home";
   loadPage(hash);
-
+  
   // Update active menu item
   updateActiveMenuItem(hash);
 }
@@ -98,17 +101,17 @@ function updateActiveMenuItem(page) {
 // Theme toggle functionality
 const updateThemeIcon = () => {
   const isDark = document.body.classList.toggle("dark-theme");
-
+  
   const iconSun = document.getElementById("iconSun");
   const iconMoon = document.getElementById("iconMoon");
   const themeText = document.getElementById("themeText");
-
+  
   if (iconSun && iconMoon && themeText) {
     iconSun.style.display = isDark ? "none" : "block";
     iconMoon.style.display = isDark ? "block" : "none";
     themeText.textContent = isDark ? "Day" : "Night";
   }
-
+  
   // Save theme preference
   localStorage.setItem("theme", isDark ? "dark" : "light");
 };
@@ -121,7 +124,7 @@ function initializeTheme() {
     const iconSun = document.getElementById("iconSun");
     const iconMoon = document.getElementById("iconMoon");
     const themeText = document.getElementById("themeText");
-
+    
     if (iconSun && iconMoon && themeText) {
       iconSun.style.display = "none";
       iconMoon.style.display = "block";
@@ -143,7 +146,7 @@ function setupNavigation() {
   document.querySelectorAll(".nav-link, .dropdown-item").forEach((item) => {
     item.addEventListener("click", (event) => {
       const href = event.currentTarget.getAttribute("href");
-
+      
       // Only handle hash navigation
       if (href && href.startsWith("#")) {
         event.preventDefault();
@@ -159,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeTheme();
   setupNavigation();
   router();
-
+  
   // Setup theme toggle button
   const themeBtn = document.getElementById("themeBtn");
   if (themeBtn) {
